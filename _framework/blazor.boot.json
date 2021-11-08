@@ -8,8 +8,8 @@
   "resources": {
     "assembly": {
       "Antlr4.Runtime.dll": "sha256-mkvTFtybU9R3IAMo0dqO6HTfufk3Ciua+ie+YrDsgAU=",
-      "CMake.dll": "sha256-BlwGW75q1AjHsy\/YFPr01MxeaAgrGZwlhKLEGLauUzA=",
-      "CMake.Website.dll": "sha256-edNQNjnO4bYwp3RQRjsOYVIbZOREhsA0IvHKuRzGYMQ=",
+      "CMake.dll": "sha256-k3vE3j6blLdV79c5UCAMNjBcI4C1DdEG5tTM7WnLH1E=",
+      "CMake.Website.dll": "sha256-j1QxtGDWSnZuXGvEG1u5ptWxgeQLSsTffX7lyr+Hnjg=",
       "LspTypes.dll": "sha256-GQaVrMP1njhBgbTBQR23Q9TVDJzg81+FMbZVsQslXUw=",
       "MessagePack.Annotations.dll": "sha256-bukEpcRZ+PtOOaxVHk1pZ0a+hMU8zxpa\/sMhYT70cFg=",
       "MessagePack.dll": "sha256-WmPzDdI0t8tz\/X2lY+FxIZyJ9emJ6SCKvH0YobVDBnY=",
