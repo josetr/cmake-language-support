@@ -1,0 +1,55 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    background: #1e1e1e;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 10px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#cmake-code-editor {
+    border: 1px solid gray;
+    flex: 1;
+}
+
+#cmake-secondary-code-editor {
+    border: 1px solid gray;
+    flex: 1;
+    display: none;
+}
+
+footer {
+    position: relative;
+    text-align: center;
+    padding: 15px 10px 20px 10px;
+}
+
+#loading {
+    position: static;
+    left: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 767.98px) {
+    #loading {
+        position: absolute;
+        left: 10px;
+        display: block;
+    }
+}
+
