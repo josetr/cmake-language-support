@@ -8,8 +8,8 @@
   "resources": {
     "assembly": {
       "Antlr4.Runtime.dll": "sha256-mkvTFtybU9R3IAMo0dqO6HTfufk3Ciua+ie+YrDsgAU=",
-      "CMake.dll": "sha256-k3vE3j6blLdV79c5UCAMNjBcI4C1DdEG5tTM7WnLH1E=",
-      "CMake.Website.dll": "sha256-j1QxtGDWSnZuXGvEG1u5ptWxgeQLSsTffX7lyr+Hnjg=",
+      "CMake.dll": "sha256-pFzSAg1Vtehdp6e6x98ICcBgfowcyo5+j0cp7IwHKZ0=",
+      "CMake.Website.dll": "sha256-erDZpkgJDi\/SLM\/G4LkpXok0cd5LtbwC+M5rm8YAM1Q=",
       "LspTypes.dll": "sha256-GQaVrMP1njhBgbTBQR23Q9TVDJzg81+FMbZVsQslXUw=",
       "MessagePack.Annotations.dll": "sha256-bukEpcRZ+PtOOaxVHk1pZ0a+hMU8zxpa\/sMhYT70cFg=",
       "MessagePack.dll": "sha256-WmPzDdI0t8tz\/X2lY+FxIZyJ9emJ6SCKvH0YobVDBnY=",
@@ -34,7 +34,7 @@
       "Microsoft.Win32.Primitives.dll": "sha256-tH16u6w5AsRdX7nMOOo+DPJF2kx4pqztmL0LkeIgyLc=",
       "Microsoft.Win32.Registry.dll": "sha256-eh3t0juDjKE1hC42Xgf81WHIAdhmMpvNvfhoUkla42g=",
       "Nerdbank.Streams.dll": "sha256-02\/maByI0\/qjcFn+Ja+PEhiwNPp3JHvy3zn+WhbWO2o=",
-      "netstandard.dll": "sha256-P01d3HkBtLsMu9fcAbMsQhVWyAWZu5p\/zyfMesMsCyU=",
+      "netstandard.dll": "sha256-CjPatrislsTr2Qlp9TyCgdoXznuB5lu5PXOIZPFFZy4=",
       "Newtonsoft.Json.dll": "sha256-ubTmM+pscoutX3y773+LhC9+EBgXMdvl7DzZlab2Aoc=",
       "StreamJsonRpc.dll": "sha256-DC7V4iURYGn98cpBnpe5e4\/eASnv5tAD2RYiXEhwfz4=",
       "System.Buffers.dll": "sha256-vCrCPIAZDCcvvn7THJ75TYPA3J51UJThwAziWj2GQ6w=",
@@ -67,7 +67,7 @@
       "System.Net.Primitives.dll": "sha256-L6nSME5iV\/L2FYWnqZd9zJ7SnPiQQk2VYM4Nr08Omdk=",
       "System.Net.WebSockets.dll": "sha256-XQzq+3e6VAzU+YswkLKbzDGxtaDaJL1eJwojwNKAwQ8=",
       "System.ObjectModel.dll": "sha256-KTTo1NGFjwPI2F9pSnWklR1sVqFeFaypsvPG+Gpi7CE=",
-      "System.Private.CoreLib.dll": "sha256-+BKQOamhMB3fcOqN3nf+0ZfPTTRMcemS9VoUYJ6d7wQ=",
+      "System.Private.CoreLib.dll": "sha256-NtNdGIfv2G3BgOFi\/wDAfhXVgEVKifJVtp8Zy6oEe\/M=",
       "System.Private.Runtime.InteropServices.JavaScript.dll": "sha256-3L8nTRRFBnDzxFS25KJROohNlCOKFgBftr5fHZb3oQc=",
       "System.Private.Uri.dll": "sha256-KNmi3BGlh+\/YhhVC9zIgUCd4TkDpuoE9LHQIO9jABKY=",
       "System.Private.Xml.dll": "sha256-5Lk6mYWMqn\/8+4V7sSxky6VbcJFn4b7DVpaW1mJM8Q8=",
