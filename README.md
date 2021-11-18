@@ -4,9 +4,11 @@ CMake Language Support implements your favorite code editor features and is curr
 
 ## Visual Studio Code
 
+Download link: https://marketplace.visualstudio.com/items?itemName=josetr.cmake-language-support-vscode
+
 [![CI](cmake-vscode.png)](cmake-vscode.png)
 
-## Features
+### Features
 
 * Syntax Highlighting
 * Auto Completion
