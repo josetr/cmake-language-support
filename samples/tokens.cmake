@@ -1,22 +1,22 @@
-Function()
-	Return()
-EndFunction()
+function()
+	return()
+endfunction()
 
-Macro()
-EndMacro()
+macro()
+endmacro()
 
-If()
-ElseIf()
-Else()
-EndIf()
+if()
+elseif()
+else()
+endif()
 
-Foreach()
-	Continue()
-EndForeach()
+foreach()
+	continue()
+endforeach()
 
-While()
-	Break()
-EndWhile()
+while()
+	break()
+endwhile()
 
 message(
 ()
