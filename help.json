@@ -1,5 +1,5 @@
 {
-  "Version": "3.20",
+  "Version": "3.21",
   "Variables": [
     {
       "Id": "CMAKE_AR",
@@ -231,7 +231,7 @@
     },
     {
       "Id": "CMAKE_MINIMUM_REQUIRED_VERSION",
-      "Summary": "The ``<min>`` version of CMake given to the most recent call to the ``cmake_minimum_required(VERSION)`` command."
+      "Summary": "The ``<min>`` version of CMake given to the most recent call to the ``cmake_minimum_required(VERSION)`` command in the current variable scope or any parent variable scope."
     },
     {
       "Id": "CMAKE_MINOR_VERSION",
@@ -1467,7 +1467,7 @@
     },
     {
       "Id": "CMAKE_INSTALL_NAME_DIR",
-      "Summary": "macOS directory name for installed targets."
+      "Summary": "Directory name for installed targets on Apple platforms."
     },
     {
       "Id": "CMAKE_INSTALL_REMOVE_ENVIRONMENT_RPATH",
@@ -2541,7 +2541,7 @@
       "Id": "cmake_minimum_required",
       "Summary": "Require a minimum version of cmake.",
       "Signatures": [
-        "cmake_minimum_required(VERSION <min>[...<max>] [FATAL_ERROR])"
+        "cmake_minimum_required(VERSION <min>[...<policy_max>] [FATAL_ERROR])"
       ],
       "Parameters": [
         "CMAKE_MINIMUM_REQUIRED_VERSION"
@@ -2625,7 +2625,7 @@
       "Id": "configure_file",
       "Summary": "Copy a file to another location and modify its contents.",
       "Signatures": [
-        "configure_file(<input> <output> [FILE_PERMISSIONS <permissions>...] [COPYONLY] [ESCAPE_QUOTES] [@ONLY] [NO_SOURCE_PERMISSIONS] [USE_SOURCE_PERMISSIONS] [NEWLINE_STYLE [UNIX|DOS|WIN32|LF|CRLF] ])"
+        "configure_file(<input> <output> [NO_SOURCE_PERMISSIONS | USE_SOURCE_PERMISSIONS | FILE_PERMISSIONS <permissions>...] [COPYONLY] [ESCAPE_QUOTES] [@ONLY] [NEWLINE_STYLE [UNIX|DOS|WIN32|LF|CRLF] ])"
       ],
       "Parameters": []
     },
@@ -2734,26 +2734,27 @@
         "file(STRINGS <filename> <variable> [<options>...])",
         "file(<HASH> <filename> <variable>)",
         "file(TIMESTAMP <filename> <variable> [<format>] [UTC])",
-        "file(GET_RUNTIME_DEPENDENCIES [RESOLVED_DEPENDENCIES_VAR <deps_var>] [UNRESOLVED_DEPENDENCIES_VAR <unresolved_deps_var>] [CONFLICTING_DEPENDENCIES_PREFIX <conflicting_deps_prefix>] [EXECUTABLES [<executable_files>...]] [LIBRARIES [<library_files>...]] [MODULES [<module_files>...]] [DIRECTORIES [<directories>...]] [BUNDLE_EXECUTABLE <bundle_executable_file>] [PRE_INCLUDE_REGEXES [<regexes>...]] [PRE_EXCLUDE_REGEXES [<regexes>...]] [POST_INCLUDE_REGEXES [<regexes>...]] [POST_EXCLUDE_REGEXES [<regexes>...]])",
+        "file(GET_RUNTIME_DEPENDENCIES [RESOLVED_DEPENDENCIES_VAR <deps_var>] [UNRESOLVED_DEPENDENCIES_VAR <unresolved_deps_var>] [CONFLICTING_DEPENDENCIES_PREFIX <conflicting_deps_prefix>] [EXECUTABLES [<executable_files>...]] [LIBRARIES [<library_files>...]] [MODULES [<module_files>...]] [DIRECTORIES [<directories>...]] [BUNDLE_EXECUTABLE <bundle_executable_file>] [PRE_INCLUDE_REGEXES [<regexes>...]] [PRE_EXCLUDE_REGEXES [<regexes>...]] [POST_INCLUDE_REGEXES [<regexes>...]] [POST_EXCLUDE_REGEXES [<regexes>...]] [POST_INCLUDE_FILES [<files>...]] [POST_EXCLUDE_FILES [<files>...]])",
         "file(WRITE <filename> <content>...)",
         "file(APPEND <filename> <content>...)",
         "file(TOUCH [<files>...])",
         "file(TOUCH_NOCREATE [<files>...])",
-        "file(GENERATE OUTPUT output-file <INPUT input-file|CONTENT content> [CONDITION expression] [TARGET target] [FILE_PERMISSIONS <permissions>...] [NO_SOURCE_PERMISSIONS] [USE_SOURCE_PERMISSIONS] [NEWLINE_STYLE [UNIX|DOS|WIN32|LF|CRLF] ])",
+        "file(GENERATE OUTPUT output-file <INPUT input-file|CONTENT content> [CONDITION expression] [TARGET target] [NO_SOURCE_PERMISSIONS | USE_SOURCE_PERMISSIONS | FILE_PERMISSIONS <permissions>...] [NEWLINE_STYLE [UNIX|DOS|WIN32|LF|CRLF] ])",
         "file(CONFIGURE OUTPUT output-file CONTENT content [ESCAPE_QUOTES] [@ONLY] [NEWLINE_STYLE [UNIX|DOS|WIN32|LF|CRLF] ])",
         "file(GLOB <variable> [LIST_DIRECTORIES true|false] [RELATIVE <path>] [CONFIGURE_DEPENDS] [<globbing-expressions>...])",
         "file(GLOB_RECURSE <variable> [FOLLOW_SYMLINKS] [LIST_DIRECTORIES true|false] [RELATIVE <path>] [CONFIGURE_DEPENDS] [<globbing-expressions>...])",
-        "file(RENAME <oldname> <newname>)",
+        "file(MAKE_DIRECTORY [<directories>...])",
         "file(REMOVE [<files>...])",
         "file(REMOVE_RECURSE [<files>...])",
-        "file(MAKE_DIRECTORY [<directories>...])",
-        "file(<COPY|INSTALL> <files>... DESTINATION <dir> [FILE_PERMISSIONS <permissions>...] [DIRECTORY_PERMISSIONS <permissions>...] [NO_SOURCE_PERMISSIONS] [USE_SOURCE_PERMISSIONS] [FOLLOW_SYMLINK_CHAIN] [FILES_MATCHING] [[PATTERN <pattern> | REGEX <regex>] [EXCLUDE] [PERMISSIONS <permissions>...]] [...])",
+        "file(RENAME <oldname> <newname> [RESULT <result>] [NO_REPLACE])",
+        "file(COPY_FILE <oldname> <newname> [RESULT <result>] [ONLY_IF_DIFFERENT])",
+        "file(<COPY|INSTALL> <files>... DESTINATION <dir> [NO_SOURCE_PERMISSIONS | USE_SOURCE_PERMISSIONS] [FILE_PERMISSIONS <permissions>...] [DIRECTORY_PERMISSIONS <permissions>...] [FOLLOW_SYMLINK_CHAIN] [FILES_MATCHING] [[PATTERN <pattern> | REGEX <regex>] [EXCLUDE] [PERMISSIONS <permissions>...]] [...])",
         "file(SIZE <filename> <variable>)",
         "file(READ_SYMLINK <linkname> <variable>)",
         "file(CREATE_LINK <original> <linkname> [RESULT <result>] [COPY_ON_ERROR] [SYMBOLIC])",
         "file(CHMOD <files>... <directories>... [PERMISSIONS <permissions>...] [FILE_PERMISSIONS <permissions>...] [DIRECTORY_PERMISSIONS <permissions>...])",
         "file(CHMOD_RECURSE <files>... <directories>... [PERMISSIONS <permissions>...] [FILE_PERMISSIONS <permissions>...] [DIRECTORY_PERMISSIONS <permissions>...])",
-        "file(REAL_PATH <path> <out-var> [BASE_DIRECTORY <dir>])",
+        "file(REAL_PATH <path> <out-var> [BASE_DIRECTORY <dir>] [EXPAND_TILDE])",
         "file(RELATIVE_PATH <variable> <directory> <file>)",
         "file(TO_CMAKE_PATH \"<path>\" <variable>)",
         "file(TO_NATIVE_PATH \"<path>\" <variable>)",
@@ -2767,6 +2768,7 @@
         "NEWLINE_CONSUME",
         "NO_HEX_CONVERSION",
         "CMP0009",
+        "COPYONLY",
         "GROUP_READ",
         "WORLD_WRITE",
         "SHOW_PROGRESS",
@@ -2779,7 +2781,7 @@
       "Summary": "",
       "Signatures": [
         "find_file(<VAR> name1 [path1 path2 ...])",
-        "find_file(<VAR> name | NAMES name1 [name2 ...] [HINTS path1 [path2 ... ENV var]] [PATHS path1 [path2 ... ENV var]] [PATH_SUFFIXES suffix1 [suffix2 ...]] [DOC \"cache documentation string\"] [REQUIRED] [NO_DEFAULT_PATH] [NO_PACKAGE_ROOT_PATH] [NO_CMAKE_PATH] [NO_CMAKE_ENVIRONMENT_PATH] [NO_SYSTEM_ENVIRONMENT_PATH] [NO_CMAKE_SYSTEM_PATH] [CMAKE_FIND_ROOT_PATH_BOTH | ONLY_CMAKE_FIND_ROOT_PATH | NO_CMAKE_FIND_ROOT_PATH])",
+        "find_file(<VAR> name | NAMES name1 [name2 ...] [HINTS [path | ENV var]... ] [PATHS [path | ENV var]... ] [PATH_SUFFIXES suffix1 [suffix2 ...]] [DOC \"cache documentation string\"] [NO_CACHE] [REQUIRED] [NO_DEFAULT_PATH] [NO_PACKAGE_ROOT_PATH] [NO_CMAKE_PATH] [NO_CMAKE_ENVIRONMENT_PATH] [NO_SYSTEM_ENVIRONMENT_PATH] [NO_CMAKE_SYSTEM_PATH] [CMAKE_FIND_ROOT_PATH_BOTH | ONLY_CMAKE_FIND_ROOT_PATH | NO_CMAKE_FIND_ROOT_PATH])",
         "find_file(<VAR> NAMES name PATHS paths... NO_DEFAULT_PATH)",
         "find_file(<VAR> NAMES name)"
       ],
@@ -2794,7 +2796,7 @@
       "Summary": "",
       "Signatures": [
         "find_library(<VAR> name1 [path1 path2 ...])",
-        "find_library(<VAR> name | NAMES name1 [name2 ...] [NAMES_PER_DIR] [HINTS path1 [path2 ... ENV var]] [PATHS path1 [path2 ... ENV var]] [PATH_SUFFIXES suffix1 [suffix2 ...]] [DOC \"cache documentation string\"] [REQUIRED] [NO_DEFAULT_PATH] [NO_PACKAGE_ROOT_PATH] [NO_CMAKE_PATH] [NO_CMAKE_ENVIRONMENT_PATH] [NO_SYSTEM_ENVIRONMENT_PATH] [NO_CMAKE_SYSTEM_PATH] [CMAKE_FIND_ROOT_PATH_BOTH | ONLY_CMAKE_FIND_ROOT_PATH | NO_CMAKE_FIND_ROOT_PATH])",
+        "find_library(<VAR> name | NAMES name1 [name2 ...] [NAMES_PER_DIR] [HINTS [path | ENV var]... ] [PATHS [path | ENV var]... ] [PATH_SUFFIXES suffix1 [suffix2 ...]] [DOC \"cache documentation string\"] [NO_CACHE] [REQUIRED] [NO_DEFAULT_PATH] [NO_PACKAGE_ROOT_PATH] [NO_CMAKE_PATH] [NO_CMAKE_ENVIRONMENT_PATH] [NO_SYSTEM_ENVIRONMENT_PATH] [NO_CMAKE_SYSTEM_PATH] [CMAKE_FIND_ROOT_PATH_BOTH | ONLY_CMAKE_FIND_ROOT_PATH | NO_CMAKE_FIND_ROOT_PATH])",
         "find_library(<VAR> NAMES name PATHS paths... NO_DEFAULT_PATH)",
         "find_library(<VAR> NAMES name)"
       ],
@@ -2855,7 +2857,7 @@
       "Summary": "",
       "Signatures": [
         "find_path(<VAR> name1 [path1 path2 ...])",
-        "find_path(<VAR> name | NAMES name1 [name2 ...] [HINTS path1 [path2 ... ENV var]] [PATHS path1 [path2 ... ENV var]] [PATH_SUFFIXES suffix1 [suffix2 ...]] [DOC \"cache documentation string\"] [REQUIRED] [NO_DEFAULT_PATH] [NO_PACKAGE_ROOT_PATH] [NO_CMAKE_PATH] [NO_CMAKE_ENVIRONMENT_PATH] [NO_SYSTEM_ENVIRONMENT_PATH] [NO_CMAKE_SYSTEM_PATH] [CMAKE_FIND_ROOT_PATH_BOTH | ONLY_CMAKE_FIND_ROOT_PATH | NO_CMAKE_FIND_ROOT_PATH])",
+        "find_path(<VAR> name | NAMES name1 [name2 ...] [HINTS [path | ENV var]... ] [PATHS [path | ENV var]... ] [PATH_SUFFIXES suffix1 [suffix2 ...]] [DOC \"cache documentation string\"] [NO_CACHE] [REQUIRED] [NO_DEFAULT_PATH] [NO_PACKAGE_ROOT_PATH] [NO_CMAKE_PATH] [NO_CMAKE_ENVIRONMENT_PATH] [NO_SYSTEM_ENVIRONMENT_PATH] [NO_CMAKE_SYSTEM_PATH] [CMAKE_FIND_ROOT_PATH_BOTH | ONLY_CMAKE_FIND_ROOT_PATH | NO_CMAKE_FIND_ROOT_PATH])",
         "find_path(<VAR> NAMES name PATHS paths... NO_DEFAULT_PATH)",
         "find_path(<VAR> NAMES name)"
       ],
@@ -2870,7 +2872,7 @@
       "Summary": "",
       "Signatures": [
         "find_program(<VAR> name1 [path1 path2 ...])",
-        "find_program(<VAR> name | NAMES name1 [name2 ...] [NAMES_PER_DIR] [HINTS path1 [path2 ... ENV var]] [PATHS path1 [path2 ... ENV var]] [PATH_SUFFIXES suffix1 [suffix2 ...]] [DOC \"cache documentation string\"] [REQUIRED] [NO_DEFAULT_PATH] [NO_PACKAGE_ROOT_PATH] [NO_CMAKE_PATH] [NO_CMAKE_ENVIRONMENT_PATH] [NO_SYSTEM_ENVIRONMENT_PATH] [NO_CMAKE_SYSTEM_PATH] [CMAKE_FIND_ROOT_PATH_BOTH | ONLY_CMAKE_FIND_ROOT_PATH | NO_CMAKE_FIND_ROOT_PATH])",
+        "find_program(<VAR> name | NAMES name1 [name2 ...] [NAMES_PER_DIR] [HINTS [path | ENV var]... ] [PATHS [path | ENV var]... ] [PATH_SUFFIXES suffix1 [suffix2 ...]] [DOC \"cache documentation string\"] [NO_CACHE] [REQUIRED] [NO_DEFAULT_PATH] [NO_PACKAGE_ROOT_PATH] [NO_CMAKE_PATH] [NO_CMAKE_ENVIRONMENT_PATH] [NO_SYSTEM_ENVIRONMENT_PATH] [NO_CMAKE_SYSTEM_PATH] [CMAKE_FIND_ROOT_PATH_BOTH | ONLY_CMAKE_FIND_ROOT_PATH | NO_CMAKE_FIND_ROOT_PATH])",
         "find_program(<VAR> NAMES name PATHS paths... NO_DEFAULT_PATH)",
         "find_program(<VAR> NAMES name)"
       ],
@@ -2890,7 +2892,9 @@
         "foreach(<loop_var> IN [LISTS [<lists>]] [ITEMS [<items>]])",
         "foreach(<loop_var>... IN ZIP_LISTS <lists>)"
       ],
-      "Parameters": []
+      "Parameters": [
+        "CMP0124"
+      ]
     },
     {
       "Id": "function",
@@ -3385,10 +3389,12 @@
       "Id": "build_command",
       "Summary": "Get a command line to build the current project.",
       "Signatures": [
-        "build_command(<variable> [CONFIGURATION <config>] [TARGET <target>] [PROJECT_NAME <projname>] # legacy, causes warning)",
+        "build_command(<variable> [CONFIGURATION <config>] [PARALLEL_LEVEL <parallel>] [TARGET <target>] [PROJECT_NAME <projname>] # legacy, causes warning)",
         "build_command(<cachevariable> <makecommand>)"
       ],
-      "Parameters": []
+      "Parameters": [
+        "NEW"
+      ]
     },
     {
       "Id": "create_test_sourcelist",
@@ -3408,7 +3414,7 @@
         "define_property(<GLOBAL | DIRECTORY | TARGET | SOURCE | TEST | VARIABLE | CACHED_VARIABLE> PROPERTY <name> [INHERITED] BRIEF_DOCS <brief-doc> [docs...] FULL_DOCS <full-doc> [docs...])"
       ],
       "Parameters": [
-        "ISPC"
+        "HIP"
       ]
     },
     {
@@ -3493,17 +3499,22 @@
       "Summary": "Specify rules to run at install time.",
       "Signatures": [
         "install(TARGETS <target>... [...])",
+        "install(IMPORTED_RUNTIME_ARTIFACTS <target>... [...])",
         "install({FILES | PROGRAMS} <file>... [...])",
         "install(DIRECTORY <dir>... [...])",
         "install(SCRIPT <file> [...])",
         "install(CODE <code> [...])",
         "install(EXPORT <export-name> [...])",
-        "install(TARGETS targets... [EXPORT <export-name>] [[ARCHIVE|LIBRARY|RUNTIME|OBJECTS|FRAMEWORK|BUNDLE| PRIVATE_HEADER|PUBLIC_HEADER|RESOURCE] [DESTINATION <dir>] [PERMISSIONS permissions...] [CONFIGURATIONS [Debug|Release|...]] [COMPONENT <component>] [NAMELINK_COMPONENT <component>] [OPTIONAL] [EXCLUDE_FROM_ALL] [NAMELINK_ONLY|NAMELINK_SKIP] ] [...] [INCLUDES DESTINATION [<dir> ...]])",
+        "install(RUNTIME_DEPENDENCY_SET <set-name> [...])",
+        "install(TARGETS targets... [EXPORT <export-name>] [RUNTIME_DEPENDENCIES args...|RUNTIME_DEPENDENCY_SET <set-name>] [[ARCHIVE|LIBRARY|RUNTIME|OBJECTS|FRAMEWORK|BUNDLE| PRIVATE_HEADER|PUBLIC_HEADER|RESOURCE] [DESTINATION <dir>] [PERMISSIONS permissions...] [CONFIGURATIONS [Debug|Release|...]] [COMPONENT <component>] [NAMELINK_COMPONENT <component>] [OPTIONAL] [EXCLUDE_FROM_ALL] [NAMELINK_ONLY|NAMELINK_SKIP] ] [...] [INCLUDES DESTINATION [<dir> ...]])",
+        "install(RUNTIME_DEPENDENCY_SET)",
+        "install(IMPORTED_RUNTIME_ARTIFACTS targets... [RUNTIME_DEPENDENCY_SET <set-name>] [[LIBRARY|RUNTIME|FRAMEWORK|BUNDLE] [DESTINATION <dir>] [PERMISSIONS permissions...] [CONFIGURATIONS [Debug|Release|...]] [COMPONENT <component>] [OPTIONAL] [EXCLUDE_FROM_ALL] ] [...])",
         "install(<FILES|PROGRAMS> files... TYPE <type> | DESTINATION <dir> [PERMISSIONS permissions...] [CONFIGURATIONS [Debug|Release|...]] [COMPONENT <component>] [RENAME <name>] [OPTIONAL] [EXCLUDE_FROM_ALL])",
         "install(DIRECTORY dirs... TYPE <type> | DESTINATION <dir> [FILE_PERMISSIONS permissions...] [DIRECTORY_PERMISSIONS permissions...] [USE_SOURCE_PERMISSIONS] [OPTIONAL] [MESSAGE_NEVER] [CONFIGURATIONS [Debug|Release|...]] [COMPONENT <component>] [EXCLUDE_FROM_ALL] [FILES_MATCHING] [[PATTERN <pattern> | REGEX <regex>] [EXCLUDE] [PERMISSIONS permissions...]] [...])",
-        "install([[SCRIPT <file>] [CODE <code>]] [COMPONENT <component>] [EXCLUDE_FROM_ALL] [...])",
+        "install([[SCRIPT <file>] [CODE <code>]] [ALL_COMPONENTS | COMPONENT <component>] [EXCLUDE_FROM_ALL] [...])",
         "install(EXPORT <export-name> DESTINATION <dir> [NAMESPACE <namespace>] [[FILE <name>.cmake]| [PERMISSIONS permissions...] [CONFIGURATIONS [Debug|Release|...]] [EXPORT_LINK_INTERFACE_LIBRARIES] [COMPONENT <component>] [EXCLUDE_FROM_ALL])",
-        "install(EXPORT_ANDROID_MK <export-name> DESTINATION <dir> [...])"
+        "install(EXPORT_ANDROID_MK <export-name> DESTINATION <dir> [...])",
+        "install(RUNTIME_DEPENDENCY_SET <set-name> [[LIBRARY|RUNTIME|FRAMEWORK] [DESTINATION <dir>] [PERMISSIONS permissions...] [CONFIGURATIONS [Debug|Release|...]] [COMPONENT <component>] [NAMELINK_COMPONENT <component>] [OPTIONAL] [EXCLUDE_FROM_ALL] ] [...] [PRE_INCLUDE_REGEXES regexes...] [PRE_EXCLUDE_REGEXES regexes...] [POST_INCLUDE_REGEXES regexes...] [POST_EXCLUDE_REGEXES regexes...] [POST_INCLUDE_FILES files...] [POST_EXCLUDE_FILES files...] [DIRECTORIES directories...])"
       ],
       "Parameters": [
         "DESTINATION",
@@ -3513,6 +3524,8 @@
         "EXCLUDE_FROM_ALL",
         "RENAME",
         "OPTIONAL",
+        "RUNTIME_DEPENDENCIES",
+        "MACOSX_BUNDLE",
         "WORLD_READ",
         "GROUP_EXECUTE",
         "BIN",
@@ -3529,7 +3542,8 @@
         "MAN",
         "DOC",
         "CMAKE_INSTALL_DATAROOTDIR",
-        "PROGRAMS"
+        "PROGRAMS",
+        "BUNDLE_EXECUTABLE"
       ]
     },
     {
@@ -3566,7 +3580,10 @@
         "project(Project)"
       ],
       "Parameters": [
-        "PROJECT_NAME"
+        "PROJECT_NAME",
+        "PROJECT_SOURCE_DIR",
+        "PROJECT_BINARY_DIR",
+        "PROJECT_IS_TOP_LEVEL"
       ]
     },
     {
@@ -3676,7 +3693,9 @@
         "target_link_libraries(<target> <PRIVATE|PUBLIC|INTERFACE> <item>... [<PRIVATE|PUBLIC|INTERFACE> <item>...]...)",
         "target_link_libraries(<target> <item>...)",
         "target_link_libraries(<target> <LINK_PRIVATE|LINK_PUBLIC> <lib>... [<LINK_PRIVATE|LINK_PUBLIC> <lib>...]...)",
-        "target_link_libraries(<target> LINK_INTERFACE_LIBRARIES <item>...)"
+        "target_link_libraries(<target> LINK_INTERFACE_LIBRARIES <item>...)",
+        "target_link_libraries(main3 PRIVATE a3 $<TARGET_OBJECTS:obj3> b3)",
+        "target_link_libraries(iface_obj3 INTERFACE obj3 $<TARGET_OBJECTS:obj3>)"
       ],
       "Parameters": [
         "INTERFACE_LINK_LIBRARIES",
@@ -3747,7 +3766,7 @@
       "Id": "ctest_build",
       "Summary": "Perform the :`CTest Build Step` as a :`Dashboard Client`.",
       "Signatures": [
-        "ctest_build([BUILD <build-dir>] [APPEND] [CONFIGURATION <config>] [FLAGS <flags>] [PROJECT_NAME <project-name>] [TARGET <target-name>] [NUMBER_ERRORS <num-err-var>] [NUMBER_WARNINGS <num-warn-var>] [RETURN_VALUE <result-var>] [CAPTURE_CMAKE_ERROR <result-var>])"
+        "ctest_build([BUILD <build-dir>] [APPEND] [CONFIGURATION <config>] [PARALLEL_LEVEL <parallel>] [FLAGS <flags>] [PROJECT_NAME <project-name>] [TARGET <target-name>] [NUMBER_ERRORS <num-err-var>] [NUMBER_WARNINGS <num-warn-var>] [RETURN_VALUE <result-var>] [CAPTURE_CMAKE_ERROR <result-var>])"
       ],
       "Parameters": [
         "QUIET"
@@ -3781,7 +3800,7 @@
       "Id": "ctest_memcheck",
       "Summary": "Perform the :`CTest MemCheck Step` as a :`Dashboard Client`.",
       "Signatures": [
-        "ctest_memcheck([BUILD <build-dir>] [APPEND] [START <start-number>] [END <end-number>] [STRIDE <stride-number>] [EXCLUDE <exclude-regex>] [INCLUDE <include-regex>] [EXCLUDE_LABEL <label-exclude-regex>] [INCLUDE_LABEL <label-include-regex>] [EXCLUDE_FIXTURE <regex>] [EXCLUDE_FIXTURE_SETUP <regex>] [EXCLUDE_FIXTURE_CLEANUP <regex>] [PARALLEL_LEVEL <level>] [TEST_LOAD <threshold>] [SCHEDULE_RANDOM <ON|OFF>] [STOP_TIME <time-of-day>] [RETURN_VALUE <result-var>] [DEFECT_COUNT <defect-count-var>] [QUIET])"
+        "ctest_memcheck([BUILD <build-dir>] [APPEND] [START <start-number>] [END <end-number>] [STRIDE <stride-number>] [EXCLUDE <exclude-regex>] [INCLUDE <include-regex>] [EXCLUDE_LABEL <label-exclude-regex>] [INCLUDE_LABEL <label-include-regex>] [EXCLUDE_FIXTURE <regex>] [EXCLUDE_FIXTURE_SETUP <regex>] [EXCLUDE_FIXTURE_CLEANUP <regex>] [PARALLEL_LEVEL <level>] [RESOURCE_SPEC_FILE <file>] [TEST_LOAD <threshold>] [SCHEDULE_RANDOM <ON|OFF>] [STOP_ON_FAILURE] [STOP_TIME <time-of-day>] [RETURN_VALUE <result-var>] [CAPTURE_CMAKE_ERROR <result-var>] [REPEAT <mode>:<n>] [OUTPUT_JUNIT <file>] [DEFECT_COUNT <defect-count-var>] [QUIET])"
       ],
       "Parameters": []
     },
@@ -3834,9 +3853,11 @@
       "Id": "ctest_test",
       "Summary": "Perform the :`CTest Test Step` as a :`Dashboard Client`.",
       "Signatures": [
-        "ctest_test([BUILD <build-dir>] [APPEND] [START <start-number>] [END <end-number>] [STRIDE <stride-number>] [EXCLUDE <exclude-regex>] [INCLUDE <include-regex>] [EXCLUDE_LABEL <label-exclude-regex>] [INCLUDE_LABEL <label-include-regex>] [EXCLUDE_FIXTURE <regex>] [EXCLUDE_FIXTURE_SETUP <regex>] [EXCLUDE_FIXTURE_CLEANUP <regex>] [PARALLEL_LEVEL <level>] [RESOURCE_SPEC_FILE <file>] [TEST_LOAD <threshold>] [SCHEDULE_RANDOM <ON|OFF>] [STOP_ON_FAILURE] [STOP_TIME <time-of-day>] [RETURN_VALUE <result-var>] [CAPTURE_CMAKE_ERROR <result-var>] [REPEAT <mode>:<n>] [QUIET])"
+        "ctest_test([BUILD <build-dir>] [APPEND] [START <start-number>] [END <end-number>] [STRIDE <stride-number>] [EXCLUDE <exclude-regex>] [INCLUDE <include-regex>] [EXCLUDE_LABEL <label-exclude-regex>] [INCLUDE_LABEL <label-include-regex>] [EXCLUDE_FIXTURE <regex>] [EXCLUDE_FIXTURE_SETUP <regex>] [EXCLUDE_FIXTURE_CLEANUP <regex>] [PARALLEL_LEVEL <level>] [RESOURCE_SPEC_FILE <file>] [TEST_LOAD <threshold>] [SCHEDULE_RANDOM <ON|OFF>] [STOP_ON_FAILURE] [STOP_TIME <time-of-day>] [RETURN_VALUE <result-var>] [CAPTURE_CMAKE_ERROR <result-var>] [REPEAT <mode>:<n>] [OUTPUT_JUNIT <file>] [QUIET])"
       ],
-      "Parameters": []
+      "Parameters": [
+        "ATTACHED_FILES"
+      ]
     },
     {
       "Id": "ctest_update",
@@ -3883,7 +3904,7 @@
     },
     {
       "Id": "install_files",
-      "Summary": "This command has been superceded by the ``install()`` command.",
+      "Summary": "This command has been superseded by the ``install()`` command.",
       "Signatures": [
         "install_files(<dir> extension file file ...)",
         "install_files(<dir> regexp)",
@@ -3893,7 +3914,7 @@
     },
     {
       "Id": "install_programs",
-      "Summary": "This command has been superceded by the ``install()`` command.",
+      "Summary": "This command has been superseded by the ``install()`` command.",
       "Signatures": [
         "install_programs(<dir> file1 file2 [file3 ...])",
         "install_programs(<dir> FILES file1 [file2 ...])",
@@ -3903,7 +3924,7 @@
     },
     {
       "Id": "install_targets",
-      "Summary": "This command has been superceded by the ``install()`` command.",
+      "Summary": "This command has been superseded by the ``install()`` command.",
       "Signatures": [
         "install_targets(<dir> [RUNTIME_DIRECTORY dir] target target)"
       ],
@@ -4229,7 +4250,7 @@
     },
     {
       "Id": "CTestScriptMode",
-      "Summary": "This file is read by ctest in script mode (-S) "
+      "Summary": "This file is read by ctest in script mode (-S)"
     },
     {
       "Id": "CTestUseLaunchers",
@@ -4329,7 +4350,7 @@
     },
     {
       "Id": "UseJava",
-      "Summary": "Use Module for Java"
+      "Summary": "This file provides support for ``Java``."
     },
     {
       "Id": "UseSWIG",
@@ -4413,7 +4434,7 @@
     },
     {
       "Id": "FindCygwin",
-      "Summary": "Find Cygwin, a POSIX-compatible environment that runs natively on Microsoft Windows "
+      "Summary": "Find Cygwin, a POSIX-compatible environment that runs natively on Microsoft Windows"
     },
     {
       "Id": "FindDart",
@@ -5029,47 +5050,47 @@
     },
     {
       "Id": "CPackArchive",
-      "Summary": "The documentation for the CPack Archive generator has moved here: ``CPack Archive Generator`` "
+      "Summary": "The documentation for the CPack Archive generator has moved here: ``CPack Archive Generator``"
     },
     {
       "Id": "CPackBundle",
-      "Summary": "The documentation for the CPack Bundle generator has moved here: ``CPack Bundle Generator`` "
+      "Summary": "The documentation for the CPack Bundle generator has moved here: ``CPack Bundle Generator``"
     },
     {
       "Id": "CPackCygwin",
-      "Summary": "The documentation for the CPack Cygwin generator has moved here: ``CPack Cygwin Generator`` "
+      "Summary": "The documentation for the CPack Cygwin generator has moved here: ``CPack Cygwin Generator``"
     },
     {
       "Id": "CPackDeb",
-      "Summary": "The documentation for the CPack DEB generator has moved here: ``CPack DEB Generator`` "
+      "Summary": "The documentation for the CPack DEB generator has moved here: ``CPack DEB Generator``"
     },
     {
       "Id": "CPackDMG",
-      "Summary": "The documentation for the CPack DragNDrop generator has moved here: ``CPack DragNDrop Generator`` "
+      "Summary": "The documentation for the CPack DragNDrop generator has moved here: ``CPack DragNDrop Generator``"
     },
     {
       "Id": "CPackFreeBSD",
-      "Summary": "The documentation for the CPack FreeBSD generator has moved here: ``CPack FreeBSD Generator`` "
+      "Summary": "The documentation for the CPack FreeBSD generator has moved here: ``CPack FreeBSD Generator``"
     },
     {
       "Id": "CPackNSIS",
-      "Summary": "The documentation for the CPack NSIS generator has moved here: ``CPack NSIS Generator`` "
+      "Summary": "The documentation for the CPack NSIS generator has moved here: ``CPack NSIS Generator``"
     },
     {
       "Id": "CPackNuGet",
-      "Summary": "The documentation for the CPack NuGet generator has moved here: ``CPack NuGet Generator`` "
+      "Summary": "The documentation for the CPack NuGet generator has moved here: ``CPack NuGet Generator``"
     },
     {
       "Id": "CPackPackageMaker",
-      "Summary": "The documentation for the CPack PackageMaker generator has moved here: ``CPack PackageMaker Generator`` "
+      "Summary": "The documentation for the CPack PackageMaker generator has moved here: ``CPack PackageMaker Generator``"
     },
     {
       "Id": "CPackProductBuild",
-      "Summary": "The documentation for the CPack productbuild generator has moved here: ``CPack productbuild Generator`` "
+      "Summary": "The documentation for the CPack productbuild generator has moved here: ``CPack productbuild Generator``"
     },
     {
       "Id": "CPackRPM",
-      "Summary": "The documentation for the CPack RPM generator has moved here: ``CPack RPM Generator`` "
+      "Summary": "The documentation for the CPack RPM generator has moved here: ``CPack RPM Generator``"
     },
     {
       "Id": "CPackWIX",
@@ -5083,7 +5104,7 @@
     },
     {
       "Id": "AUTOGEN_SOURCE_GROUP",
-      "Summary": "Name of the  ``source_group()`` for ``AUTOMOC`` and ``AUTORCC`` generated files."
+      "Summary": "Name of the  ``source_group()`` for ``AUTOMOC``, ``AUTORCC`` and ``AUTOUIC`` generated files."
     },
     {
       "Id": "AUTOGEN_TARGETS_FOLDER",
@@ -5358,6 +5379,108 @@
     {
       "Id": "VS_STARTUP_PROJECT",
       "Summary": "Specify the default startup project in a Visual Studio solution."
+    }
+  ],
+  "TestProperties": [
+    {
+      "Id": "ATTACHED_FILES",
+      "Summary": "Attach a list of files to a dashboard submission."
+    },
+    {
+      "Id": "ATTACHED_FILES_ON_FAIL",
+      "Summary": "Attach a list of files to a dashboard submission if the test fails."
+    },
+    {
+      "Id": "COST",
+      "Summary": "This property describes the cost of a test."
+    },
+    {
+      "Id": "DEPENDS",
+      "Summary": "Specifies that this test should only be run after the specified list of tests."
+    },
+    {
+      "Id": "DISABLED",
+      "Summary": "If set to ``True``, the test will be skipped and its status will be 'Not Run'."
+    },
+    {
+      "Id": "ENVIRONMENT",
+      "Summary": "Specify environment variables that should be defined for running a test."
+    },
+    {
+      "Id": "FAIL_REGULAR_EXPRESSION",
+      "Summary": "If the output matches this regular expression the test will fail, regardless of the process exit code."
+    },
+    {
+      "Id": "FIXTURES_CLEANUP",
+      "Summary": "Specifies a list of fixtures for which the test is to be treated as a cleanup test."
+    },
+    {
+      "Id": "FIXTURES_REQUIRED",
+      "Summary": "Specifies a list of fixtures the test requires."
+    },
+    {
+      "Id": "FIXTURES_SETUP",
+      "Summary": "Specifies a list of fixtures for which the test is to be treated as a setup test."
+    },
+    {
+      "Id": "LABELS",
+      "Summary": "Specify a list of text labels associated with a test."
+    },
+    {
+      "Id": "MEASUREMENT",
+      "Summary": "Specify a ``CDASH`` measurement and value to be reported for a test."
+    },
+    {
+      "Id": "PASS_REGULAR_EXPRESSION",
+      "Summary": "The output must match this regular expression for the test to pass."
+    },
+    {
+      "Id": "PROCESSOR_AFFINITY",
+      "Summary": "Set to a true value to ask CTest to launch the test process with CPU affinity for a fixed set of processors."
+    },
+    {
+      "Id": "PROCESSORS",
+      "Summary": "Set to specify how many process slots this test requires."
+    },
+    {
+      "Id": "REQUIRED_FILES",
+      "Summary": "List of files required to run the test."
+    },
+    {
+      "Id": "RESOURCE_GROUPS",
+      "Summary": "Specify resources required by a test, grouped in a way that is meaningful to the test."
+    },
+    {
+      "Id": "RESOURCE_LOCK",
+      "Summary": "Specify a list of resources that are locked by this test."
+    },
+    {
+      "Id": "RUN_SERIAL",
+      "Summary": "Do not run this test in parallel with any other test."
+    },
+    {
+      "Id": "SKIP_REGULAR_EXPRESSION",
+      "Summary": "If the output matches this regular expression the test will be marked as skipped."
+    },
+    {
+      "Id": "SKIP_RETURN_CODE",
+      "Summary": "Return code to mark a test as skipped."
+    },
+    {
+      "Id": "TIMEOUT",
+      "Summary": "How many seconds to allow for this test."
+    },
+    {
+      "Id": "TIMEOUT_AFTER_MATCH",
+      "Summary": "Change a test's timeout duration after a matching line is encountered in its output."
+    },
+    {
+      "Id": "WILL_FAIL",
+      "Summary": "If set to true, this will invert the pass/fail flag of the test."
+    },
+    {
+      "Id": "WORKING_DIRECTORY",
+      "Summary": "The directory from which the test executable will be called."
     }
   ],
   "TargetProperties": [
@@ -5907,7 +6030,7 @@
     },
     {
       "Id": "INSTALL_NAME_DIR",
-      "Summary": "macOS directory name for installed targets."
+      "Summary": "Directory name for installed targets on Apple platforms."
     },
     {
       "Id": "INSTALL_REMOVE_ENVIRONMENT_RPATH",
@@ -6014,63 +6137,15 @@
       "Summary": "Specify a list of text labels associated with a target."
     },
     {
-      "Id": "C_CLANG_TIDY",
-      "Summary": "This property is implemented only when ``<LANG>`` is ``C``, ``CXX``, ``OBJC`` or ``OBJCXX``."
-    },
-    {
-      "Id": "CXX_CLANG_TIDY",
-      "Summary": "This property is implemented only when ``<LANG>`` is ``C``, ``CXX``, ``OBJC`` or ``OBJCXX``."
-    },
-    {
-      "Id": "RC_CLANG_TIDY",
-      "Summary": "This property is implemented only when ``<LANG>`` is ``C``, ``CXX``, ``OBJC`` or ``OBJCXX``."
-    },
-    {
       "Id": "<LANG>_CLANG_TIDY",
       "Summary": "This property is implemented only when ``<LANG>`` is ``C``, ``CXX``, ``OBJC`` or ``OBJCXX``."
     },
     {
-      "Id": "C_COMPILER_LAUNCHER",
-      "Summary": "This property is implemented only when ``<LANG>`` is ``C``, ``CXX``, ``Fortran``, ``ISPC``, ``OBJC``, ``OBJCXX``, or ``CUDA``."
-    },
-    {
-      "Id": "CXX_COMPILER_LAUNCHER",
-      "Summary": "This property is implemented only when ``<LANG>`` is ``C``, ``CXX``, ``Fortran``, ``ISPC``, ``OBJC``, ``OBJCXX``, or ``CUDA``."
-    },
-    {
-      "Id": "RC_COMPILER_LAUNCHER",
-      "Summary": "This property is implemented only when ``<LANG>`` is ``C``, ``CXX``, ``Fortran``, ``ISPC``, ``OBJC``, ``OBJCXX``, or ``CUDA``."
-    },
-    {
       "Id": "<LANG>_COMPILER_LAUNCHER",
-      "Summary": "This property is implemented only when ``<LANG>`` is ``C``, ``CXX``, ``Fortran``, ``ISPC``, ``OBJC``, ``OBJCXX``, or ``CUDA``."
-    },
-    {
-      "Id": "C_CPPCHECK",
-      "Summary": "This property is supported only when ``<LANG>`` is ``C`` or ``CXX``."
-    },
-    {
-      "Id": "CXX_CPPCHECK",
-      "Summary": "This property is supported only when ``<LANG>`` is ``C`` or ``CXX``."
-    },
-    {
-      "Id": "RC_CPPCHECK",
-      "Summary": "This property is supported only when ``<LANG>`` is ``C`` or ``CXX``."
+      "Summary": "This property is implemented only when ``<LANG>`` is ``C``, ``CXX``, ``Fortran``, ``HIP``, ``ISPC``, ``OBJC``, ``OBJCXX``, or ``CUDA``."
     },
     {
       "Id": "<LANG>_CPPCHECK",
-      "Summary": "This property is supported only when ``<LANG>`` is ``C`` or ``CXX``."
-    },
-    {
-      "Id": "C_CPPLINT",
-      "Summary": "This property is supported only when ``<LANG>`` is ``C`` or ``CXX``."
-    },
-    {
-      "Id": "CXX_CPPLINT",
-      "Summary": "This property is supported only when ``<LANG>`` is ``C`` or ``CXX``."
-    },
-    {
-      "Id": "RC_CPPLINT",
       "Summary": "This property is supported only when ``<LANG>`` is ``C`` or ``CXX``."
     },
     {
@@ -6078,32 +6153,8 @@
       "Summary": "This property is supported only when ``<LANG>`` is ``C`` or ``CXX``."
     },
     {
-      "Id": "C_INCLUDE_WHAT_YOU_USE",
-      "Summary": "This property is implemented only when ``<LANG>`` is ``C`` or ``CXX``."
-    },
-    {
-      "Id": "CXX_INCLUDE_WHAT_YOU_USE",
-      "Summary": "This property is implemented only when ``<LANG>`` is ``C`` or ``CXX``."
-    },
-    {
-      "Id": "RC_INCLUDE_WHAT_YOU_USE",
-      "Summary": "This property is implemented only when ``<LANG>`` is ``C`` or ``CXX``."
-    },
-    {
       "Id": "<LANG>_INCLUDE_WHAT_YOU_USE",
       "Summary": "This property is implemented only when ``<LANG>`` is ``C`` or ``CXX``."
-    },
-    {
-      "Id": "C_VISIBILITY_PRESET",
-      "Summary": "Value for symbol visibility compile flags"
-    },
-    {
-      "Id": "CXX_VISIBILITY_PRESET",
-      "Summary": "Value for symbol visibility compile flags"
-    },
-    {
-      "Id": "RC_VISIBILITY_PRESET",
-      "Summary": "Value for symbol visibility compile flags"
     },
     {
       "Id": "<LANG>_VISIBILITY_PRESET",
@@ -6631,7 +6682,7 @@
     },
     {
       "Id": "XCODE_EMBED_<type>_PATH",
-      "Summary": "Tell the ``Xcode`` generator the relative path to use when embedding the items specified by ``XCODE_EMBED_<type>``."
+      "Summary": "This property is used only by the ``Xcode`` generator."
     },
     {
       "Id": "XCODE_EXPLICIT_FILE_TYPE",
@@ -6736,108 +6787,6 @@
     {
       "Id": "XCTEST",
       "Summary": "This target is a XCTest CFBundle on the Mac."
-    }
-  ],
-  "TestProperties": [
-    {
-      "Id": "ATTACHED_FILES",
-      "Summary": "Attach a list of files to a dashboard submission."
-    },
-    {
-      "Id": "ATTACHED_FILES_ON_FAIL",
-      "Summary": "Attach a list of files to a dashboard submission if the test fails."
-    },
-    {
-      "Id": "COST",
-      "Summary": "This property describes the cost of a test."
-    },
-    {
-      "Id": "DEPENDS",
-      "Summary": "Specifies that this test should only be run after the specified list of tests."
-    },
-    {
-      "Id": "DISABLED",
-      "Summary": "If set to ``True``, the test will be skipped and its status will be 'Not Run'."
-    },
-    {
-      "Id": "ENVIRONMENT",
-      "Summary": "Specify environment variables that should be defined for running a test."
-    },
-    {
-      "Id": "FAIL_REGULAR_EXPRESSION",
-      "Summary": "If the output matches this regular expression the test will fail."
-    },
-    {
-      "Id": "FIXTURES_CLEANUP",
-      "Summary": "Specifies a list of fixtures for which the test is to be treated as a cleanup test."
-    },
-    {
-      "Id": "FIXTURES_REQUIRED",
-      "Summary": "Specifies a list of fixtures the test requires."
-    },
-    {
-      "Id": "FIXTURES_SETUP",
-      "Summary": "Specifies a list of fixtures for which the test is to be treated as a setup test."
-    },
-    {
-      "Id": "LABELS",
-      "Summary": "Specify a list of text labels associated with a test."
-    },
-    {
-      "Id": "MEASUREMENT",
-      "Summary": "Specify a ``CDASH`` measurement and value to be reported for a test."
-    },
-    {
-      "Id": "PASS_REGULAR_EXPRESSION",
-      "Summary": "The output must match this regular expression for the test to pass."
-    },
-    {
-      "Id": "PROCESSOR_AFFINITY",
-      "Summary": "Set to a true value to ask CTest to launch the test process with CPU affinity for a fixed set of processors."
-    },
-    {
-      "Id": "PROCESSORS",
-      "Summary": "Set to specify how many process slots this test requires."
-    },
-    {
-      "Id": "REQUIRED_FILES",
-      "Summary": "List of files required to run the test."
-    },
-    {
-      "Id": "RESOURCE_GROUPS",
-      "Summary": "Specify resources required by a test, grouped in a way that is meaningful to the test."
-    },
-    {
-      "Id": "RESOURCE_LOCK",
-      "Summary": "Specify a list of resources that are locked by this test."
-    },
-    {
-      "Id": "RUN_SERIAL",
-      "Summary": "Do not run this test in parallel with any other test."
-    },
-    {
-      "Id": "SKIP_REGULAR_EXPRESSION",
-      "Summary": "If the output matches this regular expression the test will be marked as skipped."
-    },
-    {
-      "Id": "SKIP_RETURN_CODE",
-      "Summary": "Return code to mark a test as skipped."
-    },
-    {
-      "Id": "TIMEOUT",
-      "Summary": "How many seconds to allow for this test."
-    },
-    {
-      "Id": "TIMEOUT_AFTER_MATCH",
-      "Summary": "Change a test's timeout duration after a matching line is encountered in its output."
-    },
-    {
-      "Id": "WILL_FAIL",
-      "Summary": "If set to true, this will invert the pass/fail flag of the test."
-    },
-    {
-      "Id": "WORKING_DIRECTORY",
-      "Summary": "The directory from which the test executable will be called."
     }
   ],
   "SourceFileProperties": [

@@ -7,9 +7,9 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Antlr4.Runtime.dll": "sha256-mkvTFtybU9R3IAMo0dqO6HTfufk3Ciua+ie+YrDsgAU=",
-      "CMake.dll": "sha256-MW0uk+xlDqsKxSL7Hf+TCtZyd3GlPchCWoC5GAO+veQ=",
-      "CMake.Website.dll": "sha256-2AEwXmDDnkfNwbRHfNICIy4+p11ORO5TiObafyLaM8M=",
+      "Antlr4.Runtime.dll": "sha256-U0vyxi+pi598UG1THhzz9txBRK9QgcHz3HDHVWhmitE=",
+      "CMake.dll": "sha256-3d6XXWWZEBswDc77eD5gst+cNKziidsfNeI5waYgOh0=",
+      "CMake.Website.dll": "sha256-rcorKl77LtHUUS7kwxYYcaCTR5VRkD8AbD7AIbxSq0M=",
       "LspTypes.dll": "sha256-GQaVrMP1njhBgbTBQR23Q9TVDJzg81+FMbZVsQslXUw=",
       "MessagePack.Annotations.dll": "sha256-bukEpcRZ+PtOOaxVHk1pZ0a+hMU8zxpa\/sMhYT70cFg=",
       "MessagePack.dll": "sha256-WmPzDdI0t8tz\/X2lY+FxIZyJ9emJ6SCKvH0YobVDBnY=",
@@ -40,7 +40,7 @@
       "System.Buffers.dll": "sha256-vCrCPIAZDCcvvn7THJ75TYPA3J51UJThwAziWj2GQ6w=",
       "System.Collections.Concurrent.dll": "sha256-9jTy0DNMttDKDYXn3gfphQqT0OhWUcm3PDoL5\/q4Qa4=",
       "System.Collections.dll": "sha256-sGN9s3yXqcQWfcHx\/a4OtVRnm6zXYwyUp9tfYaSuVsg=",
-      "System.Collections.Immutable.dll": "sha256-iWd37YzspnTS3E38YaJJ0Y8SWVxmlHe62ahR+tSM4QY=",
+      "System.Collections.Immutable.dll": "sha256-Ie+onaUfQH3vPcK11WOb4jvL3CUrxvJk6LLC3cfRqNY=",
       "System.Collections.NonGeneric.dll": "sha256-7MUdmy+ilmu6O\/+a1belEfZ0+60VGofQaGJNpFWAxb4=",
       "System.Collections.Specialized.dll": "sha256-PL7CMIcv7TU4WlFvF1Ay7tH\/GEnnwstTgBkljI4P5Lo=",
       "System.ComponentModel.dll": "sha256-BaLvrPq5V6pT4FbjHWwrvMBc6Jnfpg5UVx4CG9dGxVE=",
