@@ -1,5 +1,5 @@
 {
-  "Version": "3.21",
+  "Version": "3.22",
   "Variables": [
     {
       "Id": "CMAKE_AR",
@@ -126,6 +126,10 @@
       "Summary": "The suffix for executables on this platform."
     },
     {
+      "Id": "CMAKE_EXECUTABLE_SUFFIX_<LANG>",
+      "Summary": "The suffix to use for the end of an executable filename of ``<LANG>`` compiler target architecture, if any."
+    },
+    {
       "Id": "CMAKE_EXTRA_GENERATOR",
       "Summary": "The extra generator used to build the project."
     },
@@ -194,6 +198,10 @@
       "Summary": "A wrapper around ``ar`` adding the appropriate ``--plugin`` option for the compiler."
     },
     {
+      "Id": "CMAKE_<LANG>_COMPILER_FRONTEND_VARIANT",
+      "Summary": "Identification string of the compiler frontend variant."
+    },
+    {
       "Id": "CMAKE_<LANG>_COMPILER_RANLIB",
       "Summary": "A wrapper around ``ranlib`` adding the appropriate ``--plugin`` option for the compiler."
     },
@@ -239,11 +247,11 @@
     },
     {
       "Id": "CMAKE_NETRC",
-      "Summary": "This variable is used to initialize the ``NETRC`` option for ``file(DOWNLOAD)`` and ``file(UPLOAD)`` commands and the module ``ExternalProject``."
+      "Summary": "This variable is used to initialize the ``NETRC`` option for the ``file(DOWNLOAD)`` and ``file(UPLOAD)`` commands."
     },
     {
       "Id": "CMAKE_NETRC_FILE",
-      "Summary": "This variable is used to initialize the ``NETRC_FILE`` option for ``file(DOWNLOAD)`` and ``file(UPLOAD)`` commands and the module ``ExternalProject``."
+      "Summary": "This variable is used to initialize the ``NETRC_FILE`` option for the ``file(DOWNLOAD)`` and ``file(UPLOAD)`` commands."
     },
     {
       "Id": "CMAKE_PARENT_LIST_FILE",
@@ -406,6 +414,18 @@
       "Summary": "Visual Studio Platform Toolset version."
     },
     {
+      "Id": "CMAKE_VS_TARGET_FRAMEWORK_VERSION",
+      "Summary": "Visual Studio target framework version."
+    },
+    {
+      "Id": "CMAKE_VS_TARGET_FRAMEWORK_IDENTIFIER",
+      "Summary": "Visual Studio target framework identifier."
+    },
+    {
+      "Id": "CMAKE_VS_TARGET_FRAMEWORK_TARGETS_VERSION",
+      "Summary": "Visual Studio target framework targets version."
+    },
+    {
       "Id": "CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION",
       "Summary": "Visual Studio Windows Target Platform Version."
     },
@@ -432,6 +452,10 @@
     {
       "Id": "<PROJECT-NAME>_HOMEPAGE_URL",
       "Summary": "Value given to the ``HOMEPAGE_URL`` option of the most recent call to the ``project()`` command with project name ``<PROJECT-NAME>``, if any."
+    },
+    {
+      "Id": "<PROJECT-NAME>_IS_TOP_LEVEL",
+      "Summary": "A boolean variable indicating whether the named project was called in a top level ``CMakeLists."
     },
     {
       "Id": "<PROJECT-NAME>_SOURCE_DIR",
@@ -468,6 +492,10 @@
     {
       "Id": "PROJECT_HOMEPAGE_URL",
       "Summary": "The homepage URL of the project."
+    },
+    {
+      "Id": "PROJECT_IS_TOP_LEVEL",
+      "Summary": "A boolean variable indicating whether the most recently called ``project()`` command in the current scope or above was in the top level ``CMakeLists."
     },
     {
       "Id": "PROJECT_NAME",
@@ -519,7 +547,7 @@
     },
     {
       "Id": "CMAKE_BUILD_TYPE",
-      "Summary": "Specifies the build type on single-configuration generators."
+      "Summary": "Specifies the build type on single-configuration generators (e.g. :`Makefile Generators` or ``Ninja``)."
     },
     {
       "Id": "CMAKE_CLANG_VFS_OVERLAY",
@@ -543,7 +571,7 @@
     },
     {
       "Id": "CMAKE_CONFIGURATION_TYPES",
-      "Summary": "Specifies the available build types on multi-config generators."
+      "Summary": "Specifies the available build types (configurations) on multi-config generators (e.g. :`Visual Studio <Visual Studio Generators>`, ``Xcode``, or ``Ninja Multi-Config``)."
     },
     {
       "Id": "CMAKE_DEPENDS_IN_PROJECT_ONLY",
@@ -771,7 +799,7 @@
     },
     {
       "Id": "CMAKE_POLICY_WARNING_CMP<NNNN>",
-      "Summary": "Explicitly enable or disable the warning when CMake Policy ``CMP<NNNN>`` is not set."
+      "Summary": "Explicitly enable or disable the warning when CMake Policy ``CMP<NNNN>`` has not been set explicitly by ``cmake_policy()`` or implicitly by ``cmake_minimum_required()``."
     },
     {
       "Id": "CMAKE_PREFIX_PATH",
@@ -796,6 +824,10 @@
     {
       "Id": "CMAKE_PROJECT_<PROJECT-NAME>_INCLUDE_BEFORE",
       "Summary": "A CMake language file or module to be included as the first step of any ``project()`` command calls that specify ``<PROJECT-NAME>`` as the project name."
+    },
+    {
+      "Id": "CMAKE_REQUIRE_FIND_PACKAGE_<PackageName>",
+      "Summary": "Variable for making ``find_package()`` call ``REQUIRED``."
     },
     {
       "Id": "CMAKE_SKIP_INSTALL_ALL_DEPENDENCY",
@@ -856,6 +888,14 @@
     {
       "Id": "CMAKE_SYSTEM_PROGRAM_PATH",
       "Summary": ":`Semicolon-separated list <CMake Language Lists>` of directories specifying a search path for the ``find_program()`` command."
+    },
+    {
+      "Id": "CMAKE_TLS_CAINFO",
+      "Summary": "Specify the default value for the ``file(DOWNLOAD)`` and ``file(UPLOAD)`` commands' ``TLS_CAINFO`` options."
+    },
+    {
+      "Id": "CMAKE_TLS_VERIFY",
+      "Summary": "Specify the default value for the ``file(DOWNLOAD)`` and ``file(UPLOAD)`` commands' ``TLS_VERIFY`` options."
     },
     {
       "Id": "CMAKE_USER_MAKE_RULES_OVERRIDE",
@@ -1514,12 +1554,20 @@
       "Summary": "Default value for ``<LANG>_INCLUDE_WHAT_YOU_USE`` target property."
     },
     {
+      "Id": "CMAKE_<LANG>_LINKER_LAUNCHER",
+      "Summary": "Default value for ``<LANG>_LINKER_LAUNCHER`` target property."
+    },
+    {
       "Id": "CMAKE_<LANG>_LINK_LIBRARY_FILE_FLAG",
       "Summary": "Language-specific flag to be used to link a library specified by a path to its file."
     },
     {
       "Id": "CMAKE_<LANG>_LINK_LIBRARY_FLAG",
       "Summary": "Flag to be used to link a library into a shared library or executable."
+    },
+    {
+      "Id": "CMAKE_<LANG>_LINK_WHAT_YOU_USE_FLAG",
+      "Summary": "Linker flag to be used to configure linker so that all specified libraries on the command line will be linked into the target."
     },
     {
       "Id": "CMAKE_<LANG>_VISIBILITY_PRESET",
@@ -1560,6 +1608,10 @@
     {
       "Id": "CMAKE_LINK_WHAT_YOU_USE",
       "Summary": "Default value for ``LINK_WHAT_YOU_USE`` target property."
+    },
+    {
+      "Id": "CMAKE_LINK_WHAT_YOU_USE_CHECK",
+      "Summary": "Defines the command executed after the link step to check libraries usage."
     },
     {
       "Id": "CMAKE_MACOSX_BUNDLE",
@@ -1815,7 +1867,7 @@
     },
     {
       "Id": "CMAKE_CUDA_EXTENSIONS",
-      "Summary": "Default value for ``CUDA_EXTENSIONS`` property of targets."
+      "Summary": "Default value for ``CUDA_EXTENSIONS`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_CUDA_HOST_COMPILER",
@@ -1823,11 +1875,11 @@
     },
     {
       "Id": "CMAKE_CUDA_STANDARD",
-      "Summary": "Default value for ``CUDA_STANDARD`` property of targets."
+      "Summary": "Default value for ``CUDA_STANDARD`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_CUDA_STANDARD_REQUIRED",
-      "Summary": "Default value for ``CUDA_STANDARD_REQUIRED`` property of targets."
+      "Summary": "Default value for ``CUDA_STANDARD_REQUIRED`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES",
@@ -1839,15 +1891,15 @@
     },
     {
       "Id": "CMAKE_CXX_EXTENSIONS",
-      "Summary": "Default value for ``CXX_EXTENSIONS`` property of targets."
+      "Summary": "Default value for ``CXX_EXTENSIONS`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_CXX_STANDARD",
-      "Summary": "Default value for ``CXX_STANDARD`` property of targets."
+      "Summary": "Default value for ``CXX_STANDARD`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_CXX_STANDARD_REQUIRED",
-      "Summary": "Default value for ``CXX_STANDARD_REQUIRED`` property of targets."
+      "Summary": "Default value for ``CXX_STANDARD_REQUIRED`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_C_COMPILE_FEATURES",
@@ -1855,15 +1907,15 @@
     },
     {
       "Id": "CMAKE_C_EXTENSIONS",
-      "Summary": "Default value for ``C_EXTENSIONS`` property of targets."
+      "Summary": "Default value for ``C_EXTENSIONS`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_C_STANDARD",
-      "Summary": "Default value for ``C_STANDARD`` property of targets."
+      "Summary": "Default value for ``C_STANDARD`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_C_STANDARD_REQUIRED",
-      "Summary": "Default value for ``C_STANDARD_REQUIRED`` property of targets."
+      "Summary": "Default value for ``C_STANDARD_REQUIRED`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_Fortran_MODDIR_DEFAULT",
@@ -1876,6 +1928,22 @@
     {
       "Id": "CMAKE_Fortran_MODOUT_FLAG",
       "Summary": "Fortran flag to enable module output."
+    },
+    {
+      "Id": "CMAKE_HIP_ARCHITECTURES",
+      "Summary": "Default value for ``HIP_ARCHITECTURES`` property of targets."
+    },
+    {
+      "Id": "CMAKE_HIP_EXTENSIONS",
+      "Summary": "Default value for ``HIP_EXTENSIONS`` target property if set when a target is created."
+    },
+    {
+      "Id": "CMAKE_HIP_STANDARD",
+      "Summary": "Default value for ``HIP_STANDARD`` target property if set when a target is created."
+    },
+    {
+      "Id": "CMAKE_HIP_STANDARD_REQUIRED",
+      "Summary": "Default value for ``HIP_STANDARD_REQUIRED`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_ISPC_HEADER_DIRECTORY",
@@ -1960,6 +2028,14 @@
     {
       "Id": "CMAKE_<LANG>_CREATE_STATIC_LIBRARY",
       "Summary": "Rule variable to create a static library."
+    },
+    {
+      "Id": "CMAKE_<LANG>_EXTENSIONS",
+      "Summary": "The variations are:"
+    },
+    {
+      "Id": "CMAKE_<LANG>_EXTENSIONS_DEFAULT",
+      "Summary": "Compiler's default extensions mode."
     },
     {
       "Id": "CMAKE_<LANG>_FLAGS",
@@ -2059,7 +2135,7 @@
     },
     {
       "Id": "CMAKE_<LANG>_SIMULATE_ID",
-      "Summary": "Identification string of \"simulated\" compiler."
+      "Summary": "Identification string of the \"simulated\" compiler."
     },
     {
       "Id": "CMAKE_<LANG>_SIMULATE_VERSION",
@@ -2074,6 +2150,14 @@
       "Summary": "Extensions of source files for the given language."
     },
     {
+      "Id": "CMAKE_<LANG>_STANDARD",
+      "Summary": "The variations are:"
+    },
+    {
+      "Id": "CMAKE_<LANG>_STANDARD_DEFAULT",
+      "Summary": "The compiler's default standard for the language ``<LANG>``."
+    },
+    {
       "Id": "CMAKE_<LANG>_STANDARD_INCLUDE_DIRECTORIES",
       "Summary": "Include directories to be used for every source file compiled with the ``<LANG>`` compiler."
     },
@@ -2082,28 +2166,32 @@
       "Summary": "Libraries linked into every executable and shared library linked for language ``<LANG>``."
     },
     {
+      "Id": "CMAKE_<LANG>_STANDARD_REQUIRED",
+      "Summary": "The variations are:"
+    },
+    {
       "Id": "CMAKE_OBJC_EXTENSIONS",
-      "Summary": "Default value for ``OBJC_EXTENSIONS`` property of targets."
+      "Summary": "Default value for ``OBJC_EXTENSIONS`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_OBJC_STANDARD",
-      "Summary": "Default value for ``OBJC_STANDARD`` property of targets."
+      "Summary": "Default value for ``OBJC_STANDARD`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_OBJC_STANDARD_REQUIRED",
-      "Summary": "Default value for ``OBJC_STANDARD_REQUIRED`` property of targets."
+      "Summary": "Default value for ``OBJC_STANDARD_REQUIRED`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_OBJCXX_EXTENSIONS",
-      "Summary": "Default value for ``OBJCXX_EXTENSIONS`` property of targets."
+      "Summary": "Default value for ``OBJCXX_EXTENSIONS`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_OBJCXX_STANDARD",
-      "Summary": "Default value for ``OBJCXX_STANDARD`` property of targets."
+      "Summary": "Default value for ``OBJCXX_STANDARD`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_OBJCXX_STANDARD_REQUIRED",
-      "Summary": "Default value for ``OBJCXX_STANDARD_REQUIRED`` property of targets."
+      "Summary": "Default value for ``OBJCXX_STANDARD_REQUIRED`` target property if set when a target is created."
     },
     {
       "Id": "CMAKE_Swift_LANGUAGE_VERSION",
@@ -2350,6 +2438,10 @@
       "Summary": "Legacy option."
     },
     {
+      "Id": "CTEST_SCRIPT_DIRECTORY",
+      "Summary": "The directory containing the top-level CTest script."
+    },
+    {
       "Id": "CTEST_SITE",
       "Summary": "Specify the CTest ``Site`` setting in a ``ctest(1)`` dashboard client script."
     },
@@ -2412,6 +2504,10 @@
     {
       "Id": "CPACK_COMPONENT_INCLUDE_TOPLEVEL_DIRECTORY",
       "Summary": "Boolean toggle to include/exclude top level directory (component case)."
+    },
+    {
+      "Id": "CPACK_CUSTOM_INSTALL_VARIABLES",
+      "Summary": "CPack variables (set via e.g. ``cpack -D``, ``CPackConfig.cmake`` or ``CPACK_PROJECT_CONFIG_FILE`` scripts) are not directly visible in installation scripts."
     },
     {
       "Id": "CPACK_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION",
@@ -2520,7 +2616,8 @@
         "OS_NAME",
         "OS_RELEASE",
         "OS_VERSION",
-        "OS_PLATFORM"
+        "OS_PLATFORM",
+        "DISTRIB_INFO"
       ]
     },
     {
@@ -2772,7 +2869,6 @@
         "GROUP_READ",
         "WORLD_WRITE",
         "SHOW_PROGRESS",
-        "CMAKE_NETRC",
         "0"
       ]
     },
@@ -2809,7 +2905,7 @@
     },
     {
       "Id": "find_package",
-      "Summary": "Find an external project, and load its settings.",
+      "Summary": "Find a package (usually provided by something external to the project), and load its package-specific details.",
       "Signatures": [
         "find_package(<PackageName> [version] [EXACT] [QUIET] [MODULE] [REQUIRED] [[COMPONENTS] [components...]] [OPTIONAL_COMPONENTS components...] [NO_POLICY_SCOPE])",
         "find_package(<PackageName> [version] [EXACT] [QUIET] [REQUIRED] [[COMPONENTS] [components...]] [OPTIONAL_COMPONENTS components...] [CONFIG|NO_MODULE] [NO_POLICY_SCOPE] [NAMES name1 [name2 ...]] [CONFIGS config1 [config2 ...]] [HINTS path1 [path2 ... ]] [PATHS path1 [path2 ... ]] [PATH_SUFFIXES suffix1 [suffix2 ...]] [NO_DEFAULT_PATH] [NO_PACKAGE_ROOT_PATH] [NO_CMAKE_PATH] [NO_CMAKE_ENVIRONMENT_PATH] [NO_SYSTEM_ENVIRONMENT_PATH] [NO_CMAKE_PACKAGE_REGISTRY] [NO_CMAKE_BUILDS_PATH] # Deprecated; does nothing. [NO_CMAKE_SYSTEM_PATH] [NO_CMAKE_SYSTEM_PACKAGE_REGISTRY] [CMAKE_FIND_ROOT_PATH_BOTH | ONLY_CMAKE_FIND_ROOT_PATH | NO_CMAKE_FIND_ROOT_PATH])",
@@ -2817,7 +2913,11 @@
         "find_package(<PackageName>)"
       ],
       "Parameters": [
-        "TRUE",
+        "CMAKE_LIBRARY_ARCHITECTURE",
+        "CMAKE_FIND_FRAMEWORK",
+        "CMAKE_FIND_ROOT_PATH",
+        "CMAKE_FIND_ROOT_PATH_MODE_PACKAGE",
+        "EXACT",
         "PACKAGE_FIND_NAME",
         "PACKAGE_FIND_VERSION",
         "PACKAGE_FIND_VERSION_MAJOR",
@@ -2845,10 +2945,6 @@
         "PACKAGE_VERSION_COMPATIBLE",
         "PACKAGE_VERSION_UNSUITABLE",
         "CMAKE_FIND_PACKAGE_SORT_DIRECTION",
-        "CMAKE_LIBRARY_ARCHITECTURE",
-        "CMAKE_FIND_FRAMEWORK",
-        "CMAKE_FIND_ROOT_PATH",
-        "CMAKE_FIND_ROOT_PATH_MODE_PACKAGE",
         "CMAKE_FIND_PACKAGE_NAME"
       ]
     },
@@ -2946,7 +3042,7 @@
       "Id": "get_property",
       "Summary": "Get a property.",
       "Signatures": [
-        "get_property(<variable> <GLOBAL | DIRECTORY [<dir>] | TARGET <target> | SOURCE <source> | [DIRECTORY <dir> | TARGET_DIRECTORY <target>] | INSTALL <file> | TEST <test> | CACHE <entry> | VARIABLE > PROPERTY <name> [SET | DEFINED | BRIEF_DOCS | FULL_DOCS])"
+        "get_property(<variable> <GLOBAL | DIRECTORY [<dir>] | TARGET <target> | SOURCE <source> [DIRECTORY <dir> | TARGET_DIRECTORY <target>] | INSTALL <file> | TEST <test> | CACHE <entry> | VARIABLE > PROPERTY <name> [SET | DEFINED | BRIEF_DOCS | FULL_DOCS])"
       ],
       "Parameters": [
         "NOTFOUND"
@@ -3150,7 +3246,7 @@
       "Id": "set_property",
       "Summary": "Set a named property in a given scope.",
       "Signatures": [
-        "set_property(<GLOBAL | DIRECTORY [<dir>] | TARGET [<target1> ...] | SOURCE [<src1> ...] [DIRECTORY <dirs> ...] | [TARGET_DIRECTORY <targets> ...] INSTALL [<file1> ...] | TEST [<test1> ...] | CACHE [<entry1> ...] > [APPEND] [APPEND_STRING] PROPERTY <name> [<value1> ...])"
+        "set_property(<GLOBAL | DIRECTORY [<dir>] | TARGET [<target1> ...] | SOURCE [<src1> ...] [DIRECTORY <dirs> ...] [TARGET_DIRECTORY <targets> ...] | INSTALL [<file1> ...] | TEST [<test1> ...] | CACHE [<entry1> ...] > [APPEND] [APPEND_STRING] PROPERTY <name> [<value1> ...])"
       ],
       "Parameters": []
     },
@@ -4186,7 +4282,7 @@
     },
     {
       "Id": "CMakeFindDependencyMacro",
-      "Summary": "."
+      "Summary": ".. command:: find_dependency"
     },
     {
       "Id": "CMakeFindFrameworks",
@@ -4286,7 +4382,7 @@
     },
     {
       "Id": "FindPackageMessage",
-      "Summary": " find_package_message(<name> \"message for user\" \"find result details\")"
+      "Summary": "find_package_message(<name> \"message for user\" \"find result details\")"
     },
     {
       "Id": "FortranCInterface",
@@ -4318,7 +4414,7 @@
     },
     {
       "Id": "SelectLibraryConfigurations",
-      "Summary": " select_library_configurations(basename)"
+      "Summary": "select_library_configurations(basename)"
     },
     {
       "Id": "SquishTestScript",
@@ -4470,7 +4566,7 @@
     },
     {
       "Id": "FindFLTK2",
-      "Summary": "Find the native FLTK 2."
+      "Summary": "Find the native FLTK 2.0 includes and library"
     },
     {
       "Id": "FindFontconfig",
@@ -4554,7 +4650,7 @@
     },
     {
       "Id": "FindIconv",
-      "Summary": "This module finds the ``iconv()`` POSIX."
+      "Summary": "This module finds the ``iconv()`` POSIX.1 functions on the system."
     },
     {
       "Id": "FindIcotool",
@@ -4578,7 +4674,7 @@
     },
     {
       "Id": "FindJasper",
-      "Summary": "Try to find the Jasper JPEG2000 library"
+      "Summary": "Find the Jasper JPEG2000 library."
     },
     {
       "Id": "FindJava",
@@ -4667,6 +4763,10 @@
     {
       "Id": "FindMPI",
       "Summary": "Find a Message Passing Interface (MPI) implementation."
+    },
+    {
+      "Id": "FindMsys",
+      "Summary": "Find MSYS, a POSIX-compatible environment that runs natively on Microsoft Windows"
     },
     {
       "Id": "FindODBC",
@@ -5006,11 +5106,11 @@
     },
     {
       "Id": "UseJavaClassFilelist",
-      "Summary": ""
+      "Summary": ".. versionchanged:: 3.20 This module was previously documented by mistake and was never meant for direct inclusion by project code."
     },
     {
       "Id": "UseJavaSymlinks",
-      "Summary": ""
+      "Summary": ".. versionchanged:: 3.20 This module was previously documented by mistake and was never meant for direct inclusion by project code."
     },
     {
       "Id": "UsePkgConfig",
@@ -5104,7 +5204,7 @@
     },
     {
       "Id": "AUTOGEN_SOURCE_GROUP",
-      "Summary": "Name of the  ``source_group()`` for ``AUTOMOC``, ``AUTORCC`` and ``AUTOUIC`` generated files."
+      "Summary": "Name of the ``source_group()`` for ``AUTOMOC``, ``AUTORCC`` and ``AUTOUIC`` generated files."
     },
     {
       "Id": "AUTOGEN_TARGETS_FOLDER",
@@ -5112,7 +5212,7 @@
     },
     {
       "Id": "AUTOMOC_SOURCE_GROUP",
-      "Summary": "Name of the  ``source_group()`` for ``AUTOMOC`` generated files."
+      "Summary": "Name of the ``source_group()`` for ``AUTOMOC`` generated files."
     },
     {
       "Id": "AUTOMOC_TARGETS_FOLDER",
@@ -5120,7 +5220,11 @@
     },
     {
       "Id": "AUTORCC_SOURCE_GROUP",
-      "Summary": "Name of the  ``source_group()`` for ``AUTORCC`` generated files."
+      "Summary": "Name of the ``source_group()`` for ``AUTORCC`` generated files."
+    },
+    {
+      "Id": "AUTOUIC_SOURCE_GROUP",
+      "Summary": "Name of the ``source_group()`` for ``AUTOUIC`` generated files."
     },
     {
       "Id": "CMAKE_C_KNOWN_FEATURES",
@@ -5286,7 +5390,7 @@
     },
     {
       "Id": "DEFINITIONS",
-      "Summary": "For CMake 2."
+      "Summary": "For CMake 2.4 compatibility only."
     },
     {
       "Id": "EXCLUDE_FROM_ALL",
@@ -5295,6 +5399,10 @@
     {
       "Id": "IMPLICIT_DEPENDS_INCLUDE_TRANSFORM",
       "Summary": "Specify ``#include`` line transforms for dependencies in a directory."
+    },
+    {
+      "Id": "IMPORTED_TARGETS",
+      "Summary": "This read-only directory property contains a :`semicolon-separated list <CMake Language Lists>` of :`Imported Targets` added in the directory by calls to the ``add_library()`` and ``add_executable()`` commands."
     },
     {
       "Id": "INCLUDE_DIRECTORIES",
@@ -5405,6 +5513,10 @@
     {
       "Id": "ENVIRONMENT",
       "Summary": "Specify environment variables that should be defined for running a test."
+    },
+    {
+      "Id": "ENVIRONMENT_MODIFICATION",
+      "Summary": "Specify environment variables that should be modified for running a test."
     },
     {
       "Id": "FAIL_REGULAR_EXPRESSION",
@@ -5873,6 +5985,10 @@
       "Summary": "Set the folder name."
     },
     {
+      "Id": "Fortran_BUILDING_INSTRINSIC_MODULES",
+      "Summary": "Instructs the CMake Fortran preprocessor that the target is building Fortran intrinsics for building a Fortran compiler."
+    },
+    {
       "Id": "Fortran_FORMAT",
       "Summary": "Set to ``FIXED`` or ``FREE`` to indicate the Fortran source layout."
     },
@@ -5915,6 +6031,22 @@
     {
       "Id": "HAS_CXX",
       "Summary": "Link the target using the C++ linker tool (obsolete)."
+    },
+    {
+      "Id": "HIP_ARCHITECTURES",
+      "Summary": "List of AMD GPU architectures to generate device code for."
+    },
+    {
+      "Id": "HIP_EXTENSIONS",
+      "Summary": "Boolean specifying whether compiler specific extensions are requested."
+    },
+    {
+      "Id": "HIP_STANDARD",
+      "Summary": "The HIP/C++ standard requested to build this target."
+    },
+    {
+      "Id": "HIP_STANDARD_REQUIRED",
+      "Summary": "Boolean describing whether the value of ``HIP_STANDARD`` is a requirement."
     },
     {
       "Id": "IMPLICIT_DEPENDS_INCLUDE_TRANSFORM",
@@ -6153,8 +6285,24 @@
       "Summary": "This property is supported only when ``<LANG>`` is ``C`` or ``CXX``."
     },
     {
+      "Id": "<LANG>_EXTENSIONS",
+      "Summary": "The variations are:"
+    },
+    {
       "Id": "<LANG>_INCLUDE_WHAT_YOU_USE",
       "Summary": "This property is implemented only when ``<LANG>`` is ``C`` or ``CXX``."
+    },
+    {
+      "Id": "<LANG>_LINKER_LAUNCHER",
+      "Summary": "This property is implemented only when ``<LANG>`` is ``C``, ``CXX``, ``OBJC``, or ``OBJCXX``"
+    },
+    {
+      "Id": "<LANG>_STANDARD",
+      "Summary": "The variations are:"
+    },
+    {
+      "Id": "<LANG>_STANDARD_REQUIRED",
+      "Summary": "The variations are:"
     },
     {
       "Id": "<LANG>_VISIBILITY_PRESET",
@@ -6230,7 +6378,7 @@
     },
     {
       "Id": "LINK_WHAT_YOU_USE",
-      "Summary": "This is a boolean option that when set to ``TRUE`` will automatically run ``ldd -r -u`` on the target after it is linked."
+      "Summary": "This is a boolean option that, when set to ``TRUE``, will automatically run contents of variable ``CMAKE_LINK_WHAT_YOU_USE_CHECK`` on the target after it is linked."
     },
     {
       "Id": "LINKER_LANGUAGE",
@@ -6681,8 +6829,16 @@
       "Summary": "Tell the ``Xcode`` generator to embed the specified list of items into the target bundle."
     },
     {
+      "Id": "XCODE_EMBED_<type>_CODE_SIGN_ON_COPY",
+      "Summary": "Boolean property used only by the ``Xcode`` generator."
+    },
+    {
       "Id": "XCODE_EMBED_<type>_PATH",
       "Summary": "This property is used only by the ``Xcode`` generator."
+    },
+    {
+      "Id": "XCODE_EMBED_<type>_REMOVE_HEADERS_ON_COPY",
+      "Summary": "Boolean property used only by the ``Xcode`` generator."
     },
     {
       "Id": "XCODE_EXPLICIT_FILE_TYPE",
@@ -6932,7 +7088,7 @@
     },
     {
       "Id": "VS_SETTINGS",
-      "Summary": "Set any item metadata on a non-built file."
+      "Summary": "Set any item metadata on a file."
     },
     {
       "Id": "VS_SHADER_DISABLE_OPTIMIZATIONS",
@@ -7017,5 +7173,343 @@
       "Summary": "Value of a cache entry."
     }
   ],
-  "InstalledFileProperties": []
+  "InstalledFileProperties": [],
+  "GeneratorExpressions": [
+    {
+      "Id": "BOOL",
+      "Summary": "Converts ``string`` to ``0`` or ``1``."
+    },
+    {
+      "Id": "AND",
+      "Summary": "where ``conditions`` is a comma-separated list of boolean expressions."
+    },
+    {
+      "Id": "OR",
+      "Summary": "where ``conditions`` is a comma-separated list of boolean expressions."
+    },
+    {
+      "Id": "NOT",
+      "Summary": "``0`` if ``condition`` is ``1``, else ``1``."
+    },
+    {
+      "Id": "STREQUAL",
+      "Summary": "``1`` if ``string1`` and ``string2`` are equal, else ``0``."
+    },
+    {
+      "Id": "EQUAL",
+      "Summary": "``1`` if ``value1`` and ``value2`` are numerically equal, else ``0``."
+    },
+    {
+      "Id": "IN_LIST",
+      "Summary": "``1`` if ``string`` is member of the semicolon-separated ``list``, else ``0``."
+    },
+    {
+      "Id": "VERSION_LESS",
+      "Summary": "``1`` if ``v1`` is a version less than ``v2``, else ``0``."
+    },
+    {
+      "Id": "VERSION_GREATER",
+      "Summary": "``1`` if ``v1`` is a version greater than ``v2``, else ``0``."
+    },
+    {
+      "Id": "VERSION_EQUAL",
+      "Summary": "``1`` if ``v1`` is the same version as ``v2``, else ``0``."
+    },
+    {
+      "Id": "VERSION_LESS_EQUAL",
+      "Summary": "``1`` if ``v1`` is a version less than or equal to ``v2``, else ``0``."
+    },
+    {
+      "Id": "VERSION_GREATER_EQUAL",
+      "Summary": "``1`` if ``v1`` is a version greater than or equal to ``v2``, else ``0``."
+    },
+    {
+      "Id": "TARGET_EXISTS",
+      "Summary": "``1`` if ``target`` exists, else ``0``."
+    },
+    {
+      "Id": "CONFIG",
+      "Summary": "``1`` if config is any one of the entries in comma-separated list ``cfgs``, else ``0``."
+    },
+    {
+      "Id": "PLATFORM_ID",
+      "Summary": "where ``platform_ids`` is a comma-separated list."
+    },
+    {
+      "Id": "C_COMPILER_ID",
+      "Summary": "where ``compiler_ids`` is a comma-separated list."
+    },
+    {
+      "Id": "CXX_COMPILER_ID",
+      "Summary": "where ``compiler_ids`` is a comma-separated list."
+    },
+    {
+      "Id": "CUDA_COMPILER_ID",
+      "Summary": "where ``compiler_ids`` is a comma-separated list."
+    },
+    {
+      "Id": "OBJC_COMPILER_ID",
+      "Summary": "where ``compiler_ids`` is a comma-separated list."
+    },
+    {
+      "Id": "OBJCXX_COMPILER_ID",
+      "Summary": "where ``compiler_ids`` is a comma-separated list."
+    },
+    {
+      "Id": "Fortran_COMPILER_ID",
+      "Summary": "where ``compiler_ids`` is a comma-separated list."
+    },
+    {
+      "Id": "HIP_COMPILER_ID",
+      "Summary": "where ``compiler_ids`` is a comma-separated list."
+    },
+    {
+      "Id": "ISPC_COMPILER_ID",
+      "Summary": "where ``compiler_ids`` is a comma-separated list."
+    },
+    {
+      "Id": "C_COMPILER_VERSION",
+      "Summary": "``1`` if the version of the C compiler matches ``version``, otherwise ``0``."
+    },
+    {
+      "Id": "CXX_COMPILER_VERSION",
+      "Summary": "``1`` if the version of the CXX compiler matches ``version``, otherwise ``0``."
+    },
+    {
+      "Id": "CUDA_COMPILER_VERSION",
+      "Summary": "``1`` if the version of the CXX compiler matches ``version``, otherwise ``0``."
+    },
+    {
+      "Id": "OBJC_COMPILER_VERSION",
+      "Summary": "``1`` if the version of the OBJC compiler matches ``version``, otherwise ``0``."
+    },
+    {
+      "Id": "OBJCXX_COMPILER_VERSION",
+      "Summary": "``1`` if the version of the OBJCXX compiler matches ``version``, otherwise ``0``."
+    },
+    {
+      "Id": "Fortran_COMPILER_VERSION",
+      "Summary": "``1`` if the version of the Fortran compiler matches ``version``, otherwise ``0``."
+    },
+    {
+      "Id": "HIP_COMPILER_VERSION",
+      "Summary": "``1`` if the version of the HIP compiler matches ``version``, otherwise ``0``."
+    },
+    {
+      "Id": "ISPC_COMPILER_VERSION",
+      "Summary": "``1`` if the version of the ISPC compiler matches ``version``, otherwise ``0``."
+    },
+    {
+      "Id": "TARGET_POLICY",
+      "Summary": "``1`` if the ``policy`` was NEW when the 'head' target was created, else ``0``."
+    },
+    {
+      "Id": "COMPILE_FEATURES",
+      "Summary": "where ``features`` is a comma-spearated list."
+    },
+    {
+      "Id": "COMPILE_LANG_AND_ID",
+      "Summary": "``1`` when the language used for compilation unit matches ``language`` and the CMake's compiler id of the language compiler matches any one of the entries in ``compiler_ids``, otherwise ``0``."
+    },
+    {
+      "Id": "COMPILE_LANGUAGE",
+      "Summary": "``1`` when the language used for compilation unit matches any of the entries in ``languages``, otherwise ``0``."
+    },
+    {
+      "Id": "LINK_LANG_AND_ID",
+      "Summary": "``1`` when the language used for link step matches ``language`` and the CMake's compiler id of the language linker matches any one of the entries in ``compiler_ids``, otherwise ``0``."
+    },
+    {
+      "Id": "LINK_LANGUAGE",
+      "Summary": "``1`` when the language used for link step matches any of the entries in ``languages``, otherwise ``0``."
+    },
+    {
+      "Id": "DEVICE_LINK",
+      "Summary": "Returns the list if it is the device link step, an empty list otherwise."
+    },
+    {
+      "Id": "HOST_LINK",
+      "Summary": "Returns the list if it is the normal link step, an empty list otherwise."
+    },
+    {
+      "Id": "COMMA",
+      "Summary": "A literal ``,``."
+    },
+    {
+      "Id": "SEMICOLON",
+      "Summary": "A literal ``;``."
+    },
+    {
+      "Id": "IF",
+      "Summary": "Evaluates to ``true_string`` if ``condition`` is ``1``."
+    },
+    {
+      "Id": "JOIN",
+      "Summary": "Joins the list with the content of ``string``."
+    },
+    {
+      "Id": "REMOVE_DUPLICATES",
+      "Summary": "Removes duplicated items in the given ``list``."
+    },
+    {
+      "Id": "FILTER",
+      "Summary": "Includes or removes items from ``list`` that match the regular expression ``regex``."
+    },
+    {
+      "Id": "LOWER_CASE",
+      "Summary": "Content of ``string`` converted to lower case."
+    },
+    {
+      "Id": "UPPER_CASE",
+      "Summary": "Content of ``string`` converted to upper case."
+    },
+    {
+      "Id": "GENEX_EVAL",
+      "Summary": "Content of ``expr`` evaluated as a generator expression in the current context."
+    },
+    {
+      "Id": "TARGET_GENEX_EVAL",
+      "Summary": "Content of ``expr`` evaluated as a generator expression in the context of ``tgt`` target."
+    },
+    {
+      "Id": "CONFIGURATION",
+      "Summary": "Configuration name."
+    },
+    {
+      "Id": "TARGET_NAME_IF_EXISTS",
+      "Summary": "The target name ``tgt`` if the target exists, an empty string otherwise."
+    },
+    {
+      "Id": "TARGET_FILE",
+      "Summary": "Full path to the ``tgt`` binary file."
+    },
+    {
+      "Id": "TARGET_FILE_BASE_NAME",
+      "Summary": "Base name of ``tgt``, i."
+    },
+    {
+      "Id": "TARGET_FILE_PREFIX",
+      "Summary": "Prefix of the ``tgt`` filename (such as ``lib``)."
+    },
+    {
+      "Id": "TARGET_FILE_SUFFIX",
+      "Summary": "Suffix of the ``tgt`` filename (extension such as ``.so`` or ``.exe``)."
+    },
+    {
+      "Id": "TARGET_FILE_NAME",
+      "Summary": "The ``tgt`` filename."
+    },
+    {
+      "Id": "TARGET_FILE_DIR",
+      "Summary": "Directory of the ``tgt`` binary file."
+    },
+    {
+      "Id": "TARGET_LINKER_FILE",
+      "Summary": "File used when linking to the ``tgt`` target."
+    },
+    {
+      "Id": "TARGET_LINKER_FILE_BASE_NAME",
+      "Summary": "Base name of file used to link the target ``tgt``, i."
+    },
+    {
+      "Id": "TARGET_LINKER_FILE_PREFIX",
+      "Summary": "Prefix of file used to link target ``tgt``."
+    },
+    {
+      "Id": "TARGET_LINKER_FILE_SUFFIX",
+      "Summary": "Suffix of file used to link where ``tgt`` is the name of a target."
+    },
+    {
+      "Id": "TARGET_LINKER_FILE_NAME",
+      "Summary": "Name of file used to link target ``tgt``."
+    },
+    {
+      "Id": "TARGET_LINKER_FILE_DIR",
+      "Summary": "Directory of file used to link target ``tgt``."
+    },
+    {
+      "Id": "TARGET_SONAME_FILE",
+      "Summary": "File with soname (``.so.3``) where ``tgt`` is the name of a target."
+    },
+    {
+      "Id": "TARGET_SONAME_FILE_NAME",
+      "Summary": "Name of file with soname (``.so.3``)."
+    },
+    {
+      "Id": "TARGET_SONAME_FILE_DIR",
+      "Summary": "Directory of with soname (``.so.3``)."
+    },
+    {
+      "Id": "TARGET_PDB_FILE",
+      "Summary": "Full path to the linker generated program database file (.pdb) where ``tgt`` is the name of a target."
+    },
+    {
+      "Id": "TARGET_PDB_FILE_BASE_NAME",
+      "Summary": "Base name of the linker generated program database file (.pdb) where ``tgt`` is the name of a target."
+    },
+    {
+      "Id": "TARGET_PDB_FILE_NAME",
+      "Summary": "Name of the linker generated program database file (.pdb)."
+    },
+    {
+      "Id": "TARGET_PDB_FILE_DIR",
+      "Summary": "Directory of the linker generated program database file (.pdb)."
+    },
+    {
+      "Id": "TARGET_BUNDLE_DIR",
+      "Summary": "Full path to the bundle directory (``my.app``, ``my.framework``, or ``my.bundle``) where ``tgt`` is the name of a target."
+    },
+    {
+      "Id": "TARGET_BUNDLE_CONTENT_DIR",
+      "Summary": "Full path to the bundle content directory where ``tgt`` is the name of a target."
+    },
+    {
+      "Id": "TARGET_PROPERTY",
+      "Summary": "Value of the property ``prop`` on the target ``tgt``."
+    },
+    {
+      "Id": "TARGET_RUNTIME_DLLS",
+      "Summary": "List of DLLs that the target depends on at runtime."
+    },
+    {
+      "Id": "INSTALL_PREFIX",
+      "Summary": "Content of the install prefix when the target is exported via ``install(EXPORT)``, or when evaluated in the ``INSTALL_NAME_DIR`` property or the ``INSTALL_NAME_DIR`` argument of ``install(RUNTIME_DEPENDENCY_SET)``, and empty otherwise."
+    },
+    {
+      "Id": "TARGET_NAME",
+      "Summary": "Marks ``...`` as being the name of a target."
+    },
+    {
+      "Id": "LINK_ONLY",
+      "Summary": "Content of ``...`` except when evaluated in a link interface while propagating :`Target Usage Requirements`, in which case it is the empty string."
+    },
+    {
+      "Id": "INSTALL_INTERFACE",
+      "Summary": "Content of ``...`` when the property is exported using ``install(EXPORT)``, and empty otherwise."
+    },
+    {
+      "Id": "BUILD_INTERFACE",
+      "Summary": "Content of ``...`` when the property is exported using ``export()``, or when the target is used by another target in the same buildsystem."
+    },
+    {
+      "Id": "MAKE_C_IDENTIFIER",
+      "Summary": "Content of ``...`` converted to a C identifier."
+    },
+    {
+      "Id": "TARGET_OBJECTS",
+      "Summary": "List of objects resulting from build of ``objLib``."
+    },
+    {
+      "Id": "SHELL_PATH",
+      "Summary": "Content of ``...`` converted to shell path style."
+    },
+    {
+      "Id": "OUTPUT_CONFIG",
+      "Summary": "Only valid in ``add_custom_command()`` and ``add_custom_target()`` as the outer-most generator expression in an argument."
+    },
+    {
+      "Id": "COMMAND_CONFIG",
+      "Summary": "Only valid in ``add_custom_command()`` and ``add_custom_target()`` as the outer-most generator expression in an argument."
+    }
+  ]
 }

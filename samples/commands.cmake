@@ -9,6 +9,7 @@ cmake_path(GET path-var ROOT_DIRECTORY cmake_path_ROOT_DIRECTORY_RESULT)
 cmake_path(GET path-var ROOT_PATH cmake_path_ROOT_PATH_RESULT)
 cmake_path(GET path-var FILENAME cmake_path_FILENAME_RESULT)
 cmake_path(GET path-var EXTENSION LAST_ONLY cmake_path_EXTENSION_RESULT)
+cmake_path(GET path-var EXTENSION cmake_path_EXTENSION_RESULT2)
 cmake_path(GET path-var STEM LAST_ONLY cmake_path_STEM_RESULT)
 cmake_path(GET path-var RELATIVE_PART cmake_path_RELATIVE_PART_RESULT)
 cmake_path(GET path-var PARENT_PATH cmake_path_PARENT_PATH_RESULT)
@@ -241,7 +242,7 @@ message(
 )
 
 if(ENABLE_PROJECT_COMMANDS)
-  #Project Commands
+  # Project Commands
   add_custom_target(custom_target WORKING_DIRECTORY dir SOURCES src1 src2)
   add_custom_target(dependency WORKING_DIRECTORY dir)
   add_custom_command(TARGET target WORKING_DIRECTORY dir)
@@ -256,8 +257,9 @@ if(ENABLE_PROJECT_COMMANDS)
   get_source_file_property(get_source_file_property_OUT_VAR file)
   get_target_property(get_target_property_OUT_VAR custom_target)
   get_test_property(custom_target FOLDER get_test_property_OUT_VAR)
-  set_target_properties(custom_target FOLDER folder)
-  install(TARGETS custom_target ... DIRECTORY dir ...)
+  set_target_properties(custom_target PROPERTIES FOLDER folder)
+  install(TARGETS custom_target ...)
+  install(DIRECTORY dir ...)
   install(FILES file file2 DIRECTORY dir EXCLUDE_FROM_ALL)
   target_compile_definitions(custom_target def)
   target_compile_features(custom_target feature)
@@ -279,7 +281,7 @@ if(ENABLE_PROJECT_COMMANDS)
 endif()
 
 if(ENABLE_TEST_COMMANDS)
-  #CTest Commands
+  # CTest Commands
   ctest_build(
     BUILD dir
     TARGET target

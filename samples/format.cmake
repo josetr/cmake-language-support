@@ -1,11 +1,12 @@
-#copyright
+# copyright
 
 if(1 = 1 AND(1 = 2 AND(3 = 4)))
   msg(NAME name
     stage${A}
     ${C}stage
     1.5${A}TRUE${B}CMP1010
-    #comment
+
+    # comment
     #[=[CMT]=] COMMAND
     ${C}/c
     ${C}.cmake@ONLY
@@ -13,13 +14,14 @@ if(1 = 1 AND(1 = 2 AND(3 = 4)))
     --add-gnu-debuglink=$<TARGET_FILE:${name}>.debug
     name::name
     dammit"quoted"
-    ####   -Dvar="smt"  #TODO
+
+    # ###   -Dvar="smt"  #TODO
     -Dvar= "smt")
   msg(1 # cmt
   )
 elseif()
   if()
-    msg#[=[CMT]=](#[=[CMT]=])
+    msg(#[=[CMT]=])
   endif()
 else()
   if()
