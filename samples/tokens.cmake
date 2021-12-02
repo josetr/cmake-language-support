@@ -1,5 +1,5 @@
 function()
-	return()
+return()
 endfunction()
 
 macro()
@@ -11,11 +11,11 @@ else()
 endif()
 
 foreach()
-	continue()
+continue()
 endforeach()
 
 while()
-	break()
+break()
 endwhile()
 
 message(

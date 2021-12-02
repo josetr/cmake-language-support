@@ -3333,7 +3333,7 @@
     },
     {
       "Id": "while",
-      "Summary": "Evaluate a group of commands while a condition is true",
+      "Summary": "Evaluate a group of commands while a condition is true Synopsis ^^^^^^^^",
       "Signatures": [
         "while(<condition>)",
         "while(<constant>)",
@@ -3400,7 +3400,9 @@
     {
       "Id": "add_definitions",
       "Summary": "Add -D define flags to the compilation of source files.",
-      "Signatures": [],
+      "Signatures": [
+        "add_definitions(-DFOO -DBAR ...)"
+      ],
       "Parameters": []
     },
     {
@@ -7510,6 +7512,320 @@
     {
       "Id": "COMMAND_CONFIG",
       "Summary": "Only valid in ``add_custom_command()`` and ``add_custom_target()`` as the outer-most generator expression in an argument."
+    }
+  ],
+  "Features": [
+    {
+      "Id": "c_std_90",
+      "Summary": "Compiler mode is at least C 90."
+    },
+    {
+      "Id": "c_std_99",
+      "Summary": "Compiler mode is at least C 99."
+    },
+    {
+      "Id": "c_std_11",
+      "Summary": "Compiler mode is at least C 11."
+    },
+    {
+      "Id": "c_std_17",
+      "Summary": "Compiler mode is at least C 17."
+    },
+    {
+      "Id": "c_std_23",
+      "Summary": "Compiler mode is at least C 23."
+    },
+    {
+      "Id": "c_function_prototypes",
+      "Summary": "Function prototypes, as defined in ``ISO/IEC 9899:1990``."
+    },
+    {
+      "Id": "c_restrict",
+      "Summary": "``restrict`` keyword, as defined in ``ISO/IEC 9899:1999``."
+    },
+    {
+      "Id": "c_static_assert",
+      "Summary": "Static assert, as defined in ``ISO/IEC 9899:2011``."
+    },
+    {
+      "Id": "c_variadic_macros",
+      "Summary": "Variadic macros, as defined in ``ISO/IEC 9899:1999``."
+    },
+    {
+      "Id": "cxx_std_98",
+      "Summary": "Compiler mode is at least C++ 98."
+    },
+    {
+      "Id": "cxx_std_11",
+      "Summary": "Compiler mode is at least C++ 11."
+    },
+    {
+      "Id": "cxx_std_14",
+      "Summary": "Compiler mode is at least C++ 14."
+    },
+    {
+      "Id": "cxx_std_17",
+      "Summary": "Compiler mode is at least C++ 17."
+    },
+    {
+      "Id": "cxx_std_20",
+      "Summary": "Compiler mode is at least C++ 20."
+    },
+    {
+      "Id": "cxx_std_23",
+      "Summary": "Compiler mode is at least C++ 23."
+    },
+    {
+      "Id": "cxx_template_template_parameters",
+      "Summary": "Template template parameters, as defined in ``ISO/IEC 14882:1998``."
+    },
+    {
+      "Id": "cxx_alias_templates",
+      "Summary": "Template aliases, as defined in N2258_."
+    },
+    {
+      "Id": "cxx_alignas",
+      "Summary": "Alignment control ``alignas``, as defined in N2341_."
+    },
+    {
+      "Id": "cxx_alignof",
+      "Summary": "Alignment control ``alignof``, as defined in N2341_."
+    },
+    {
+      "Id": "cxx_attributes",
+      "Summary": "Generic attributes, as defined in N2761_."
+    },
+    {
+      "Id": "cxx_auto_type",
+      "Summary": "Automatic type deduction, as defined in N1984_."
+    },
+    {
+      "Id": "cxx_constexpr",
+      "Summary": "Constant expressions, as defined in N2235_."
+    },
+    {
+      "Id": "cxx_decltype_incomplete_return_types",
+      "Summary": "Decltype on incomplete return types, as defined in N3276_."
+    },
+    {
+      "Id": "cxx_decltype",
+      "Summary": "Decltype, as defined in N2343_."
+    },
+    {
+      "Id": "cxx_default_function_template_args",
+      "Summary": "Default template arguments for function templates, as defined in DR226_"
+    },
+    {
+      "Id": "cxx_defaulted_functions",
+      "Summary": "Defaulted functions, as defined in N2346_."
+    },
+    {
+      "Id": "cxx_defaulted_move_initializers",
+      "Summary": "Defaulted move initializers, as defined in N3053_."
+    },
+    {
+      "Id": "cxx_delegating_constructors",
+      "Summary": "Delegating constructors, as defined in N1986_."
+    },
+    {
+      "Id": "cxx_deleted_functions",
+      "Summary": "Deleted functions, as defined in N2346_."
+    },
+    {
+      "Id": "cxx_enum_forward_declarations",
+      "Summary": "Enum forward declarations, as defined in N2764_."
+    },
+    {
+      "Id": "cxx_explicit_conversions",
+      "Summary": "Explicit conversion operators, as defined in N2437_."
+    },
+    {
+      "Id": "cxx_extended_friend_declarations",
+      "Summary": "Extended friend declarations, as defined in N1791_."
+    },
+    {
+      "Id": "cxx_extern_templates",
+      "Summary": "Extern templates, as defined in N1987_."
+    },
+    {
+      "Id": "cxx_final",
+      "Summary": "Override control ``final`` keyword, as defined in N2928_, N3206_ and N3272_."
+    },
+    {
+      "Id": "cxx_func_identifier",
+      "Summary": "Predefined ``__func__`` identifier, as defined in N2340_."
+    },
+    {
+      "Id": "cxx_generalized_initializers",
+      "Summary": "Initializer lists, as defined in N2672_."
+    },
+    {
+      "Id": "cxx_inheriting_constructors",
+      "Summary": "Inheriting constructors, as defined in N2540_."
+    },
+    {
+      "Id": "cxx_inline_namespaces",
+      "Summary": "Inline namespaces, as defined in N2535_."
+    },
+    {
+      "Id": "cxx_lambdas",
+      "Summary": "Lambda functions, as defined in N2927_."
+    },
+    {
+      "Id": "cxx_local_type_template_args",
+      "Summary": "Local and unnamed types as template arguments, as defined in N2657_."
+    },
+    {
+      "Id": "cxx_long_long_type",
+      "Summary": "``long long`` type, as defined in N1811_."
+    },
+    {
+      "Id": "cxx_noexcept",
+      "Summary": "Exception specifications, as defined in N3050_."
+    },
+    {
+      "Id": "cxx_nonstatic_member_init",
+      "Summary": "Non-static data member initialization, as defined in N2756_."
+    },
+    {
+      "Id": "cxx_nullptr",
+      "Summary": "Null pointer, as defined in N2431_."
+    },
+    {
+      "Id": "cxx_override",
+      "Summary": "Override control ``override`` keyword, as defined in N2928_, N3206_ and N3272_."
+    },
+    {
+      "Id": "cxx_range_for",
+      "Summary": "Range-based for, as defined in N2930_."
+    },
+    {
+      "Id": "cxx_raw_string_literals",
+      "Summary": "Raw string literals, as defined in N2442_."
+    },
+    {
+      "Id": "cxx_reference_qualified_functions",
+      "Summary": "Reference qualified functions, as defined in N2439_."
+    },
+    {
+      "Id": "cxx_right_angle_brackets",
+      "Summary": "Right angle bracket parsing, as defined in N1757_."
+    },
+    {
+      "Id": "cxx_rvalue_references",
+      "Summary": "R-value references, as defined in N2118_."
+    },
+    {
+      "Id": "cxx_sizeof_member",
+      "Summary": "Size of non-static data members, as defined in N2253_."
+    },
+    {
+      "Id": "cxx_static_assert",
+      "Summary": "Static assert, as defined in N1720_."
+    },
+    {
+      "Id": "cxx_strong_enums",
+      "Summary": "Strongly typed enums, as defined in N2347_."
+    },
+    {
+      "Id": "cxx_thread_local",
+      "Summary": "Thread-local variables, as defined in N2659_."
+    },
+    {
+      "Id": "cxx_trailing_return_types",
+      "Summary": "Automatic function return type, as defined in N2541_."
+    },
+    {
+      "Id": "cxx_unicode_literals",
+      "Summary": "Unicode string literals, as defined in N2442_."
+    },
+    {
+      "Id": "cxx_uniform_initialization",
+      "Summary": "Uniform initialization, as defined in N2640_."
+    },
+    {
+      "Id": "cxx_unrestricted_unions",
+      "Summary": "Unrestricted unions, as defined in N2544_."
+    },
+    {
+      "Id": "cxx_user_literals",
+      "Summary": "User-defined literals, as defined in N2765_."
+    },
+    {
+      "Id": "cxx_variadic_macros",
+      "Summary": "Variadic macros, as defined in N1653_."
+    },
+    {
+      "Id": "cxx_variadic_templates",
+      "Summary": "Variadic templates, as defined in N2242_."
+    },
+    {
+      "Id": "cxx_aggregate_default_initializers",
+      "Summary": "Aggregate default initializers, as defined in N3605_."
+    },
+    {
+      "Id": "cxx_attribute_deprecated",
+      "Summary": "``[[deprecated]]`` attribute, as defined in N3760_."
+    },
+    {
+      "Id": "cxx_binary_literals",
+      "Summary": "Binary literals, as defined in N3472_."
+    },
+    {
+      "Id": "cxx_contextual_conversions",
+      "Summary": "Contextual conversions, as defined in N3323_."
+    },
+    {
+      "Id": "cxx_decltype_auto",
+      "Summary": "``decltype(auto)`` semantics, as defined in N3638_."
+    },
+    {
+      "Id": "cxx_digit_separators",
+      "Summary": "Digit separators, as defined in N3781_."
+    },
+    {
+      "Id": "cxx_generic_lambdas",
+      "Summary": "Generic lambdas, as defined in N3649_."
+    },
+    {
+      "Id": "cxx_lambda_init_captures",
+      "Summary": "Initialized lambda captures, as defined in N3648_."
+    },
+    {
+      "Id": "cxx_relaxed_constexpr",
+      "Summary": "Relaxed constexpr, as defined in N3652_."
+    },
+    {
+      "Id": "cxx_return_type_deduction",
+      "Summary": "Return type deduction on normal functions, as defined in N3386_."
+    },
+    {
+      "Id": "cxx_variable_templates",
+      "Summary": "Variable templates, as defined in N3651_."
+    },
+    {
+      "Id": "cuda_std_03",
+      "Summary": "Compiler mode is at least CUDA/C++ 03."
+    },
+    {
+      "Id": "cuda_std_11",
+      "Summary": "Compiler mode is at least CUDA/C++ 11."
+    },
+    {
+      "Id": "cuda_std_14",
+      "Summary": "Compiler mode is at least CUDA/C++ 14."
+    },
+    {
+      "Id": "cuda_std_17",
+      "Summary": "Compiler mode is at least CUDA/C++ 17."
+    },
+    {
+      "Id": "cuda_std_20",
+      "Summary": "Compiler mode is at least CUDA/C++ 20."
+    },
+    {
+      "Id": "cuda_std_23",
+      "Summary": "Compiler mode is at least CUDA/C++ 23."
     }
   ]
 }
